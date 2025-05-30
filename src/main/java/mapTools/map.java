@@ -5,7 +5,7 @@ import java.util.List;
 
 public class map {
 
-    public ArrayList<Integer> planets = new ArrayList<Integer>();
+    public static List<unit> planets = new ArrayList<>();
     public static List<unit> units = new ArrayList<>();
 
     public int xWidth;

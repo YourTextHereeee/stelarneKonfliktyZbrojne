@@ -2,11 +2,12 @@ package mapTools;
 
 public class simulation {
 
-    //MAIN
+    //MAIN \/
     public static void main(String[] args) {
 
+        System.out.print("kompilacja zakonczona sukcesem :)");
     }
-    //MAIN
+    //MAIN /\
 
     public static void beginSimulation(){
 

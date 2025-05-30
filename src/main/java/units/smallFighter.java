@@ -22,7 +22,6 @@ public class smallFighter extends ship {
         switch (target) {
             case null -> {
                 System.out.println("Target unit not found.");
-                return;
             }
             case largeFighter fighter -> fighter.takeDamage(this.damage);
             case smallFighter fighter -> fighter.takeDamage(this.damage);
