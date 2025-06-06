@@ -100,11 +100,11 @@ public class map {
             startPlanet.metal = true;
 
             transporter ts = new transporter(
-                    map.units.size() + 1,         // unique unitID (safe way to generate unique ID)
-                    civ.getCivID(),               // owner is this civ
+                    map.units.size() + 1,         // unitID
+                    civ.getCivID(),               // owner
                     startPlanet.xcoords,          // starting X
                     startPlanet.ycoords,          // starting Y
-                    5,                            // example speed
+                    5,                            // speed
                     "idle"                        // status
             );
 
