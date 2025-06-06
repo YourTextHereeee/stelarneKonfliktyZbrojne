@@ -7,16 +7,16 @@ import java.util.List;
 public class civilization {
 
     private int civID;
-    private String name;
+    //private String name;
 
     private static List<planet> ownedPlanets = new ArrayList<>();
     private static List<unit> ownedUnits = new ArrayList<>();
 
 
     // konstruktor
-    public civilization(int civID, String name) {
+    public civilization(int civID/*, String name*/) {
         this.civID = civID;
-        this.name = name;
+        //this.name = name;
     }
 
 
@@ -30,15 +30,15 @@ public class civilization {
         this.civID = civID;
     }
 
-    public String getName() {
-
-        return name;
-    }
-
-    public void setName(String name) {
-
-        this.name = name;
-    }
+//    public String getName() {
+//
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//
+//        this.name = name;
+//    }
 
 
     public static List<planet> getOwnedPlanets() {

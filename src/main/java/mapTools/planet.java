@@ -11,6 +11,7 @@ public class planet {
     public int ycoords;
 
     public String status;
+    // idle, producing, combat
 
     Boolean carbon;
     Boolean silicon;

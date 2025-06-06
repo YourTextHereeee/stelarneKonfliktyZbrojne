@@ -1,16 +1,88 @@
 package mapTools;
+import units.*;
+import services.*;
+import civilization.*;
+
+import java.util.Map;
+import java.util.Scanner;
 
 public class simulation {
+
+    public static long seed;
 
     //MAIN \/
     public static void main(String[] args) {
 
-        System.out.print("kompilacja zakonczona sukcesem :)");
+        System.out.print("kompilacja zakonczona sukcesem :) \n\n");
+        //simulation simulation = new simulation();
+
+
+        //testowe kilka statków + wymiana obrażeń
+
+        //to będzie zarządzanie przez planetę
+        largeFighter lf1 = new largeFighter(1, 0, 100, 100, 10, "active");
+        smallFighter sf1 = new smallFighter(2, 1, 100, 100, 12, "active");
+        turret t1 = new turret(3, 1, 1, 200, 30, 1);
+
+        map.units.add(lf1);
+        map.units.add(sf1);
+        map.units.add(t1);
+
+
+        //to będzie zarządzanie przez combat
+        lf1.dealDamage(2);
+        lf1.dealDamage(3);
+        t1.dealDamage(1);
+
+
+        System.out.println("SmallFighter " + sf1.getUnitID() + " health: " + sf1.getHealth());
+        System.out.println("Turret " + t1.getUnitID() + " health: " + t1.getHealth());
+        System.out.println("Large Fighter " + lf1);
+
+        //START
+        beginSimulation();
+
     }
     //MAIN /\
 
     public static void beginSimulation(){
 
+        //Wprowadzanie info do startu symulacji (na razie w wersji konsolowej)
+        map map = new map();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\n\nKoniec testu zadawania i przyjmowania obrażeń\n\nProszę wprowadzić seed");
+        seed = scanner.nextInt();
+
+        // rozmiar mapy, ze sprawdzaniem
+        int mapSize;
+        do {
+            System.out.print("\nPodaj rozmiar mapy [10-1000]: ");
+            mapSize = scanner.nextInt();
+        } while (mapSize < 10 || mapSize > 1000);
+
+        map.xWidth = mapSize;
+        map.yHeight = mapSize;
+
+        // ilość planet - od rozmiaru mapy do kwadratu rozmiaru/10
+        int planetMin = mapSize;
+        int planetMax = (mapSize * mapSize) / 10;
+        int planetCount;
+        do {
+            System.out.print("\nPodaj ilość planet [" + planetMin + " - " + planetMax + "]: ");
+            planetCount = scanner.nextInt();
+        } while (planetCount < planetMin || planetCount > planetMax);
+
+        // ilość cywilizacji - od 3 do 1/10 ilości planet, chyba że ilość planet <30
+        int civMax = Math.max(3, planetCount / 10);
+        int civCount;
+        do {
+            System.out.print("\nPodaj ilość cywilizacji [3 - " + civMax + "]: ");
+            civCount = scanner.nextInt();
+        } while (civCount < 3 || civCount > civMax);
+
+        // tworzenie mapy (temp1 powinien tu być ilością planet, a temp3 ilością cywilizacji
+        mapTools.map.generateMap(planetCount, civCount);
     }
 
     public static void endSimulation(){

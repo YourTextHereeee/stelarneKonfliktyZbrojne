@@ -14,7 +14,7 @@ public class smallFighter extends ship {
     public void takeDamage(int damage) {
         this.health -= damage;
         if (this.health < 0) this.health = 0;
-        //System.out.println("SmallFighter " + getUnitID() + " took " + damage + " damage, health now " + this.health);
+        System.out.println("SmallFighter " + getUnitID() + " took " + damage + " damage, health now " + this.health);
     }
 
     public void dealDamage(int targetUnitId) {
