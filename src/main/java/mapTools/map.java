@@ -1,6 +1,6 @@
 package mapTools;
 import civilization.civilization;
-import units.unit;
+import units.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -98,6 +98,19 @@ public class map {
             startPlanet.carbon = true;
             startPlanet.silicon = true;
             startPlanet.metal = true;
+
+            transporter ts = new transporter(
+                    map.units.size() + 1,         // unique unitID (safe way to generate unique ID)
+                    civ.getCivID(),               // owner is this civ
+                    startPlanet.xcoords,          // starting X
+                    startPlanet.ycoords,          // starting Y
+                    5,                            // example speed
+                    "idle"                        // status
+            );
+
+            civ.getOwnedUnits().add(ts);
+
+            map.units.add(ts);
 
             map.civs.add(civ);
         }
