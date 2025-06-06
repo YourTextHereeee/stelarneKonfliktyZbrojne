@@ -43,10 +43,14 @@ public class simulation {
         beginSimulation();
 
         civilization civ1 = map.civs.get(0);
-        System.out.println("Civilization " + civ1);
         civ1.addPlanet(map.planets.get(5));
+        System.out.println("cywilizacja 1");
+        System.out.println("Civilization " + civ1);
+        System.out.println("planety posiadane przez cyw 1");
         System.out.println(civ1.getOwnedPlanets());
+        System.out.println("wszystkie cyw");
         System.out.println(map.civs);
+        System.out.println("wszytskie planety");
         System.out.println(map.planets);
 
 

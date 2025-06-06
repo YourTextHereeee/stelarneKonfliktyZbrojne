@@ -21,8 +21,14 @@ public class planet {
     public short metalCredit;
 
 
-    public static void alterPopulation(String status, int population) {
+    public void alterPopulation(String status, int population) {
 
+        if(this.status == "combat"){
+            this.population = (int) (this.population*0.9);
+        }
+        else{
+            this.population = (int) (this.population*1.1);
+        }
 
     }
 
@@ -35,4 +41,19 @@ public class planet {
 
 
     }
+
+    @Override
+    public String toString(){
+        return "Planet{" +
+                "planetID:" + planetID +
+                ", owner:" + owner +
+                ", size:" + size +
+                ", population:" + population +
+                ", xCoords:" + xcoords +
+                ", yCoords:" + ycoords +
+                ", status:" + status + '\'' +
+                "}";
+
+    }
+
 }
