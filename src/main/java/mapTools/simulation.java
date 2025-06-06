@@ -22,7 +22,7 @@ public class simulation {
         //to będzie zarządzanie przez planetę
         largeFighter lf1 = new largeFighter(1, 0, 100, 100, 10, "active");
         smallFighter sf1 = new smallFighter(2, 1, 100, 100, 12, "active");
-        turret t1 = new turret(3, 1, 1, 200, 30, 1);
+        turret t1 = new turret(3, 1, 1, 1);
 
         map.units.add(lf1);
         map.units.add(sf1);
@@ -53,6 +53,9 @@ public class simulation {
         System.out.println("wszytskie planety");
         System.out.println(map.planets);
 
+        //wizualizacja mapy
+        map.generateMapPreview();
+        map.showMap();
 
     }
     //MAIN /\

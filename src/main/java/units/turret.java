@@ -3,11 +3,11 @@ import mapTools.map;
 
 public class turret extends unit {
     private int planetID;
-    private int health;
-    private int damage;
+    private int health = 200;
+    private int damage = 80;
     private int turretStatus;
 
-    public turret(int unitID, int owner, int planetID, int health, int damage, int turretStatus) {
+    public turret(int unitID, int owner, int planetID, int turretStatus) {
         super(unitID, owner);
         this.planetID = planetID;
         this.health = health;

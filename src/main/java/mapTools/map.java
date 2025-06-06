@@ -14,6 +14,8 @@ public class map {
     public static int xWidth;
     public static int yHeight;
 
+    static int [][] plan;
+
 
     public static unit getUnitById(int id) {
         for (unit u : units) {
@@ -113,6 +115,26 @@ public class map {
             map.units.add(ts);
 
             map.civs.add(civ);
+        }
+    }
+
+    public static void generateMapPreview(){
+        plan = new int[xWidth][yHeight];
+        for (planet i : map.planets){
+            planet pl1 = i;
+            plan[pl1.xcoords][pl1.ycoords] = 1;
+        }
+    }
+    public static void showMap(){
+
+        for(int i = 0; i < map.xWidth; i++){
+            for(int j = 0; j < map.yHeight; j++){
+                if (plan[i][j] == 0)
+                    System.out.print(" ");
+                if (plan[i][j] == 1)
+                    System.out.print("o");
+            }
+            System.out.println();
         }
     }
 }

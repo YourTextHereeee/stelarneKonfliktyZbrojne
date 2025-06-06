@@ -1,7 +1,7 @@
 package units;
 
 public class transporter extends ship {
-    private boolean loaded;
+    private boolean loaded = false;
 
     public transporter(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner, xcoords, ycoords, speed, status);
