@@ -122,7 +122,7 @@ public class map {
         plan = new int[xWidth][yHeight];
         for (planet i : map.planets){
             planet pl1 = i;
-            plan[pl1.xcoords][pl1.ycoords] = 1;
+            plan[pl1.xcoords][pl1.ycoords] = pl1.owner+1;
         }
     }
     public static void showMap(){
@@ -131,8 +131,8 @@ public class map {
             for(int j = 0; j < map.yHeight; j++){
                 if (plan[i][j] == 0)
                     System.out.print(" ");
-                if (plan[i][j] == 1)
-                    System.out.print("o");
+                else
+                    System.out.print(plan[i][j]-1);
             }
             System.out.println();
         }

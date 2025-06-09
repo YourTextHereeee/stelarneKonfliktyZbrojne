@@ -53,9 +53,18 @@ public class simulation {
         System.out.println("wszytskie planety");
         System.out.println(map.planets);
 
-        //wizualizacja mapy
         map.generateMapPreview();
         map.showMap();
+
+        planet pla = map.planets.get(0);
+        pla.chpop(100);
+
+        System.out.println(map.planets.get(0));
+
+        nextGeneration();
+        System.out.println(map.planets.get(0));
+
+
 
     }
     //MAIN /\
@@ -107,6 +116,9 @@ public class simulation {
     public static void nextGeneration(){
 
         //wszystkie metody które mają coś robić co generację - np planet.alterPopulation
+        for (planet i : map.planets){
+            i.alterPopulation();
+        }
     }
 
 
