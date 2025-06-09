@@ -41,10 +41,19 @@ public class simulation {
 
         //START
         beginSimulation();
+        //START
+
+
+        //Display
+
+
+        System.out.print("\nPrzykładowa odległość po koordynatach: " + map.getDistanceMap(1, 1, 4, 5));
+        System.out.print("\nPrzykładowa odległość po planetach: " + map.getDistancePlanet(1, 2));
+
 
         civilization civ1 = map.civs.get(0);
         civ1.addPlanet(map.planets.get(5));
-        System.out.println("cywilizacja 1");
+        System.out.println("\ncywilizacja 1");
         System.out.println("Civilization " + civ1);
         System.out.println("planety posiadane przez cyw 1");
         System.out.println(civ1.getOwnedPlanets());
@@ -63,8 +72,6 @@ public class simulation {
 
         nextGeneration();
         System.out.println(map.planets.get(0));
-
-
 
     }
     //MAIN /\

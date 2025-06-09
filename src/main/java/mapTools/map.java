@@ -26,12 +26,26 @@ public class map {
 
     public static float getDistancePlanet(int targetPlanetID, int startPlanetID){
 
-        return 0;
+        planet targetPlanet = null;
+        planet startPlanet = null;
+        int differenceX;
+        int differenceY;
+
+        for (planet i : planets) {
+
+            if (i.planetID == targetPlanetID) targetPlanet = i;
+            if (i.planetID == startPlanetID) startPlanet = i;
+        }
+
+        differenceX = targetPlanet.xcoords - startPlanet.xcoords;
+        differenceY = targetPlanet.ycoords - startPlanet.ycoords;
+
+        return (float) Math.sqrt(differenceX*differenceX + differenceY*differenceY);
     }
 
     public static float getDistanceMap(int targetX, int targetY, int startX, int startY){
 
-        return 0;
+        return (float) Math.sqrt(Math.pow(targetX - startX, 2) + Math.pow(targetY - startY, 2));
     }
 
     public static void generateMap(int planetCount, int civCount){
