@@ -86,10 +86,10 @@ public class planet {
         }
     }
 
-    public static int makeDecision(){
+    public void makeDecision(){
 
-        // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo
-        return 1;
+        // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
+        produceUnit(1);
     }
 
     @Override

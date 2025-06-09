@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class simulation {
 
     public static long seed;
+    public static long generation;
 
     //MAIN \/
     public static void main(String[] args) {
@@ -114,19 +115,37 @@ public class simulation {
 
         // tworzenie mapy (temp1 powinien tu być ilością planet, a temp3 ilością cywilizacji
         mapTools.map.generateMap(planetCount, civCount);
+
+        nextGeneration();
     }
 
     public static void endSimulation(){
 
+
     }
 
-    public static void nextGeneration(){
+    public static void nextGeneration() {
+
+        generation++;
 
         //wszystkie metody które mają coś robić co generację - np planet.alterPopulation
-        for (planet i : map.planets){
+        for (planet i : map.planets) {
             i.alterPopulation();
         }
+
+        for (civilization i : map.civs) {
+            i.makeDecision();
+        }
+
+        for (planet i : map.planets) {
+            i.makeDecision();
+        }
+
+        // warunek na zakańczanie symulacji
+        if (map.civs.size() > 1) {
+            nextGeneration();
+        } else {
+            endSimulation();
+        }
     }
-
-
 }
