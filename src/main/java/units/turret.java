@@ -2,16 +2,18 @@ package units;
 import mapTools.map;
 
 public class turret extends unit {
+    public static final int DAMAGE = 80;
+    private static final int HEALTH = 200;
     private int planetID;
-    private int health = 200;
-    private int damage = 80;
+    private int health;
+    private int damage;
     private int turretStatus;
 
     public turret(int unitID, int owner, int planetID, int turretStatus) {
         super(unitID, owner);
         this.planetID = planetID;
-        this.health = health;
-        this.damage = damage;
+        this.health = HEALTH;
+        this.damage = DAMAGE;
         this.turretStatus = turretStatus;
     }
 
@@ -56,9 +58,7 @@ public class turret extends unit {
     public void dealDamage(int targetUnitId) {
         unit target = map.getUnitById(targetUnitId);
         switch (target) {
-            case null -> {
-                System.out.println("Target unit not found.");
-            }
+            case null -> System.out.println("Target unit not found.");
             case largeFighter fighter -> fighter.takeDamage(this.damage);
             case smallFighter fighter -> fighter.takeDamage(this.damage);
             case turret turret -> turret.takeDamage(this.damage);

@@ -143,8 +143,7 @@ public class map {
 
     public static void generateMapPreview(){
         plan = new int[xWidth][yHeight];
-        for (planet i : map.planets){
-            planet pl1 = i;
+        for (planet pl1 : map.planets){
             plan[pl1.xcoords][pl1.ycoords] = pl1.owner+1;
         }
     }

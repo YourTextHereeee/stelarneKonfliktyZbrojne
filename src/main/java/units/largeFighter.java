@@ -2,13 +2,13 @@ package units;
 import mapTools.map;
 
 public class largeFighter extends ship {
+    public static final int DAMAGE = 50;
+    private static final int HEALTH = 150;
     private int health;
-    private final int damage;
 
     public largeFighter(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner, xcoords, ycoords, speed, status);
-        this.health = 150;
-        this.damage = 50;
+        this.health = HEALTH;
     }
 
     public void takeDamage(int damage) {
@@ -23,9 +23,9 @@ public class largeFighter extends ship {
             case null -> {
                 System.out.println("Target unit not found.");
             }
-            case largeFighter fighter -> fighter.takeDamage(this.damage);
-            case smallFighter fighter -> fighter.takeDamage(this.damage);
-            case turret turret -> turret.takeDamage(this.damage);
+            case largeFighter fighter -> fighter.takeDamage(DAMAGE);
+            case smallFighter fighter -> fighter.takeDamage(DAMAGE);
+            case turret turret -> turret.takeDamage(DAMAGE);
             default -> System.out.println("Target unit cannot take damage.");
         }
 
@@ -34,10 +34,6 @@ public class largeFighter extends ship {
 
     public int getHealth() {
         return health;
-    }
-
-    public int getDamage() {
-        return damage;
     }
 
     @Override
@@ -50,7 +46,7 @@ public class largeFighter extends ship {
                 ", speed=" + getSpeed() +
                 ", status='" + getStatus() + '\'' +
                 ", health=" + health +
-                ", damage=" + damage +
+                ", damage=" + DAMAGE +
                 '}';
     }
 }
