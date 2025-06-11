@@ -1,18 +1,31 @@
 package services;
 
+import civilization.civilization;
+import mapTools.map;
+import units.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class logistics {
 
     private int unitID;
     private int targetPlanetID;
     private int startPlanetID;
     private float movementCredit;
+    private int ETA;
+    private float vectorX;
+    private float vectorY;
+
 
     // konstruktor
-    public logistics(int unitID, int targetPlanetID, int startPlanetID, float movementCredit) {
+    public logistics(int unitID, int targetPlanetID, int startPlanetID) {
         this.unitID = unitID;
         this.targetPlanetID = targetPlanetID;
         this.startPlanetID = startPlanetID;
-        this.movementCredit = movementCredit;
+        this.movementCredit = 0;
+        this.ETA = (int) (map.getDistancePlanet(targetPlanetID, startPlanetID)/((ship) map.getUnitById(unitID)).getSpeed());
+        this.vectorX = (map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
+        this.vectorY = (map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
     }
 
 
@@ -49,8 +62,14 @@ public class logistics {
     }
 
 
-    public void beginJourney(){
+    public static void beginJourney(int unitID, int targetPlanetID, int startPlanetID) {
 
+        logistics logistics1 = new logistics(unitID, targetPlanetID, startPlanetID);
+        map.logiQueue.add(logistics1);
+
+        //if (Math.abs(map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) >= Math.abs(map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords)){
+        //} else {
+        //}
     }
 
     public void finishJourney(){
@@ -58,6 +77,8 @@ public class logistics {
     }
 
     public void moveUnit(){
+
+
 
     }
 }

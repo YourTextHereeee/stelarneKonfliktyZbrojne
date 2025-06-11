@@ -14,7 +14,7 @@ public class simulation {
     //MAIN \/
     public static void main(String[] args) {
 
-        System.out.print("kompilacja zakonczona sukcesem :) \n\n");
+        System.out.print("kompilacja zakończona sukcesem :) \n\n");
         //simulation simulation = new simulation();
 
 
@@ -60,7 +60,7 @@ public class simulation {
         System.out.println(civ1.getOwnedPlanets());
         System.out.println("wszystkie cyw");
         System.out.println(map.civs);
-        System.out.println("wszytskie planety");
+        System.out.println("wszystkie planety");
         System.out.println(map.planets);
 
         map.generateMapPreview();
@@ -81,6 +81,7 @@ public class simulation {
 
         //Wprowadzanie info do startu symulacji (na razie w wersji konsolowej)
         map map = new map();
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\n\nKoniec testu zadawania i przyjmowania obrażeń\n\nProszę wprowadzić seed");
@@ -116,7 +117,7 @@ public class simulation {
         // tworzenie mapy (temp1 powinien tu być ilością planet, a temp3 ilością cywilizacji
         mapTools.map.generateMap(planetCount, civCount);
 
-        nextGeneration();
+        //nextGeneration();
     }
 
     public static void endSimulation(){
@@ -134,16 +135,20 @@ public class simulation {
         }
 
         for (civilization i : map.civs) {
-            i.makeDecision();
+           i.makeDecision();
         }
 
         for (planet i : map.planets) {
             i.makeDecision();
         }
 
+        for (logistics i : map.logiQueue){
+            i.moveUnit();
+        }
+
         // warunek na zakańczanie symulacji
         if (map.civs.size() > 1) {
-            nextGeneration();
+            //nextGeneration();
         } else {
             endSimulation();
         }

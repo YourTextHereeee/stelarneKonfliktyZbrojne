@@ -1,5 +1,6 @@
 package mapTools;
 import civilization.civilization;
+import services.logistics;
 import units.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class map {
     public static List<planet> planets = new ArrayList<>();
     public static List<unit> units = new ArrayList<>();
     public static List<civilization> civs = new ArrayList<>();
+    public static List<logistics> logiQueue = new ArrayList<>();
 
     public static int xWidth;
     public static int yHeight;
@@ -20,6 +22,13 @@ public class map {
     public static unit getUnitById(int id) {
         for (unit u : units) {
             if (u.getUnitID() == id) return u;
+        }
+        return null;
+    }
+
+    public static planet getPlanetById(int id) {
+        for (planet u : planets) {
+            if (u.planetID == id) return u;
         }
         return null;
     }
@@ -43,7 +52,7 @@ public class map {
         return (float) Math.sqrt(differenceX*differenceX + differenceY*differenceY);
     }
 
-    public static float getDistanceMap(int targetX, int targetY, int startX, int startY){
+    public static float getDistanceMap(float targetX, float targetY, float startX, float startY){
 
         return (float) Math.sqrt(Math.pow(targetX - startX, 2) + Math.pow(targetY - startY, 2));
     }

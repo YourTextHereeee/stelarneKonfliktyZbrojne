@@ -1,8 +1,8 @@
 package units;
 
 public class ship extends unit {
-    private int xcoords;
-    private int ycoords;
+    private float xcoords;
+    private float ycoords;
     private int speed;
     private String status;
 
@@ -14,7 +14,7 @@ public class ship extends unit {
         this.status = status;
     }
 
-    public int getXcoords() {
+    public float getXcoords() {
         return xcoords;
     }
 
@@ -22,7 +22,7 @@ public class ship extends unit {
         this.xcoords = xcoords;
     }
 
-    public int getYcoords() {
+    public float getYcoords() {
         return ycoords;
     }
 

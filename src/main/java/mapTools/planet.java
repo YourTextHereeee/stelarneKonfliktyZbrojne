@@ -48,6 +48,8 @@ public class planet {
                     5,                            // speed
                     "idle"
             );
+
+            map.units.add(sFighter);
         }
 
         if(unitType == 2){
@@ -60,6 +62,8 @@ public class planet {
                     5,                            // speed
                     "idle"
             );
+
+            map.units.add(lFighter);
         }
 
         if(unitType == 3){
@@ -71,6 +75,8 @@ public class planet {
                     1                       // status
 
             );
+
+            map.units.add(turret);
         }
 
         if(unitType == 4){
@@ -83,13 +89,15 @@ public class planet {
                     5,                            // speed
                     "idle"
             );
+
+            map.units.add(transporter);
         }
     }
 
     public void makeDecision(){
 
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
-        produceUnit(1);
+        //produceUnit(1);
     }
 
     @Override
