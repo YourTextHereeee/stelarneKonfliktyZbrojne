@@ -92,10 +92,6 @@ public class map {
             planet.xcoords = x;
             planet.ycoords = y;
 
-            planet.carbon = rng.nextBoolean();
-            planet.silicon = rng.nextBoolean();
-            planet.metal = rng.nextBoolean();
-
             map.planets.add(planet);
         }
 
@@ -115,10 +111,6 @@ public class map {
             startPlanet.owner = i;
             startPlanet.population = startPlanet.size * 1000;
             startPlanet.status = "producing";
-
-            startPlanet.carbon = true;
-            startPlanet.silicon = true;
-            startPlanet.metal = true;
 
             transporter ts = new transporter(
                     map.units.size() + 1,         // unitID

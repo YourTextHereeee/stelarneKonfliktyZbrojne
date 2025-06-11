@@ -13,12 +13,6 @@ public class planet {
     public String status;
     // idle, producing, combat
 
-    Boolean carbon;
-    Boolean silicon;
-    Boolean metal;
-    public short carbonCredit;
-    public short siliconCredit;
-    public short metalCredit;
 
 
     public void alterPopulation() {
