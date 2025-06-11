@@ -20,9 +20,7 @@ public class largeFighter extends ship {
     public void dealDamage(int targetUnitId) {
         unit target = map.getUnitById(targetUnitId);
         switch (target) {
-            case null -> {
-                System.out.println("Target unit not found.");
-            }
+            case null -> System.out.println("Target unit not found.");
             case largeFighter fighter -> fighter.takeDamage(DAMAGE);
             case smallFighter fighter -> fighter.takeDamage(DAMAGE);
             case turret turret -> turret.takeDamage(DAMAGE);

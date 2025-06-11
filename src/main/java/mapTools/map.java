@@ -105,11 +105,7 @@ public class map {
             do {
                 startPlanet = map.planets.get(rng.nextInt(planets.size()));
 
-                planetOccupied = false;
-
-                if (startPlanet.owner != 0) {
-                    planetOccupied = true;
-                }
+                planetOccupied = startPlanet.owner != 0;
 
             } while (planetOccupied);
 
