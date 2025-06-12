@@ -1,4 +1,5 @@
 package services;
+import mapTools.planet;
 import units.unit;
 
 import java.util.List;
@@ -6,63 +7,57 @@ import java.util.ArrayList;
 
 public class combat {
 
-    private int targetPlanetID;
-    private int attackerID;
-    private int defenderID;
+    public void runCombat(planet p, int attackerID, int defenderID) {
+        System.out.println("Combat started on planet: " + p.planetID);
 
-    private static List<unit> attackingUnits = new ArrayList<>();
-    private static List<unit> defendingUnits = new ArrayList<>();
+        // zmiana statusu planety
+        p.status = "combat";
 
-    //konstruktor
-    public combat(int targetPlanetID, int attackerID, int defenderID) {
-        this.targetPlanetID = targetPlanetID;
-        this.attackerID = attackerID;
-        this.defenderID = defenderID;
-    }
+        List<unit> attackingUnits = p.getUnitsForCivilization(attackerID);
+        List<unit> defendingUnits = p.getUnitsForCivilization(defenderID);
 
+        while (!attackingUnits.isEmpty() && !defendingUnits.isEmpty() && p.getPopulation() > 0) {
 
-    public int getTargetPlanetID() {
-        return targetPlanetID;
-    }
+            // offence
+            List<unit> tempDefenders = new ArrayList<>(defendingUnits);
+            for (unit attacker : attackingUnits) {
+                if (!tempDefenders.isEmpty()) {
+                    int targetIndex = (int) (Math.random() * tempDefenders.size());
+                    unit target = tempDefenders.get(targetIndex);
+                    attacker.dealDamage(target);
+                    if (target.getHealth()==0) {
+                        defendingUnits.remove(target);
+                        tempDefenders.remove(target);
+                    }
+                }
+            }
 
-    public void setTargetPlanetID(int targetPlanetID) {
-        this.targetPlanetID = targetPlanetID;
-    }
+            // defence
+            List<unit> tempAttackers = new ArrayList<>(attackingUnits);
+            for (unit defender : defendingUnits) {
+                if (!tempAttackers.isEmpty()) {
+                    int targetIndex = (int) (Math.random() * tempAttackers.size());
+                    unit target = tempAttackers.get(targetIndex);
+                    defender.dealDamage(target);
+                    if (target.getHealth()==0) {
+                        attackingUnits.remove(target);
+                        tempAttackers.remove(target);
+                    }
+                }
+            }
 
-    public int getAttackerID() {
-        return attackerID;
-    }
+            // zmiana populacji
+            p.alterPopulation();
+        }
 
-    public void setAttackerID(int attackerID) {
-        this.attackerID = attackerID;
-    }
+        // koniec
+        if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
+            System.out.println("Attacker wins!");
+            p.changeOwner(attackerID);
+        } else if (attackingUnits.isEmpty()) {
+            System.out.println("Defender wins!");
+        }
 
-    public int getDefenderID() {
-        return defenderID;
-    }
-
-    public void setDefenderID(int defenderID) {
-        this.defenderID = defenderID;
-    }
-
-
-    public static List<unit> getAttackingUnits() {
-
-        return attackingUnits;
-    }
-
-    public static void setAttackingUnits(List<unit> attackingUnits) {
-
-        combat.attackingUnits = attackingUnits;
-    }
-
-    public static List<unit> getDefendingUnits() {
-
-        return defendingUnits;
-    }
-
-    public static void setDefendingUnits(List<unit> defendingUnits) {
-
-        combat.defendingUnits = defendingUnits;
+        System.out.println("Combat ended on planet: " + p.planetID);
     }
 }
