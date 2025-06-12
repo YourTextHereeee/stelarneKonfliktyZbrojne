@@ -1,5 +1,4 @@
 package units;
-import mapTools.map;
 
 public class smallFighter extends ship {
     public static final int DAMAGE = 40;

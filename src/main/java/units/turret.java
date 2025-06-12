@@ -1,5 +1,4 @@
 package units;
-import mapTools.map;
 
 public class turret extends unit {
     public static final int DAMAGE = 80;

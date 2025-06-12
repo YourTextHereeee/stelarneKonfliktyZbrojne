@@ -3,6 +3,7 @@ import units.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class planet {
 
@@ -20,7 +21,7 @@ public class planet {
 
     public void alterPopulation() {
 
-        if(this.status == "combat"){
+        if(Objects.equals(this.status, "combat")){
             this.population = (int) (this.population*0.9);
         }
         else{
@@ -106,9 +107,9 @@ public class planet {
     }
 
     public List<unit> getUnitsForCivilization(int ownerID) {
-        List<unit> unites = new ArrayList<unit>();
+        List<unit> unites = new ArrayList<>();
         for(unit unit : map.units){
-            if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords){
+            if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords && unit.getOwner() == ownerID){
                 unites.add(unit);
             }
             if(unit.getXCoords() == this.planetID){

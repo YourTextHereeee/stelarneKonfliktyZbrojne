@@ -3,7 +3,6 @@ import units.*;
 import services.*;
 import civilization.*;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class simulation {
