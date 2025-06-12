@@ -33,6 +33,9 @@ public class simulation {
 //        lf1.dealDamage(2);
 //        lf1.dealDamage(3);
 //        t1.dealDamage(1);
+        t1.dealDamage(lf1);
+        lf1.dealDamage(t1);
+        lf1.dealDamage(sf1);
 
 
         System.out.println("SmallFighter " + sf1.getUnitID() + " health: " + sf1.getHealth());

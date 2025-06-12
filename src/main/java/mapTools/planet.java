@@ -112,7 +112,7 @@ public class planet {
             if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords && unit.getOwner() == ownerID){
                 unites.add(unit);
             }
-            if(unit.getXCoords() == this.planetID){
+            if(unit.getTurretPlanetID() == this.planetID){
                 unites.add(unit);
             }
         }
