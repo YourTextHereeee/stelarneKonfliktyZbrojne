@@ -1,5 +1,6 @@
 package mapTools;
 import units.*;
+import java.util.Random;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class planet {
                     this.owner,               // owner
                     this.xcoords,          // starting X
                     this.ycoords,          // starting Y
-                    5,                            // speed
+                    4,                            // speed
                     "idle"
             );
 
@@ -104,6 +105,21 @@ public class planet {
 
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
         //produceUnit(1);
+        int i = 0;
+        Random rng = new Random(simulation.seed);
+
+        for (unit u: map.getCivilizationById(this.owner).getOwnedUnits()){
+
+            if (u instanceof turret){
+                i++;
+            }
+        }
+
+        if (i == size){
+            this.produceUnit( rng.nextInt(1) + 1 );
+        } else {
+            this.produceUnit( 3);
+        }
     }
 
     public List<unit> getUnitsForCivilization(int ownerID) {

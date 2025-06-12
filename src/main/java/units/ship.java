@@ -5,6 +5,7 @@ public class ship extends unit {
     private float ycoords;
     private int speed;
     private String status;
+    // idle, flying, fighting, colonizing
 
     public ship(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner);

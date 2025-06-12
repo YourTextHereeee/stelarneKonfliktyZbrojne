@@ -4,11 +4,13 @@ import units.unit;
 import mapTools.planet;
 import java.util.ArrayList;
 import java.util.List;
+import services.*;
 
 public class civilization {
 
     private int civID;
     private String name;
+    private int saturation;
 
     private List<planet> ownedPlanets;
     private List<unit> ownedUnits;

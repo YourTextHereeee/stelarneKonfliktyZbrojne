@@ -33,6 +33,13 @@ public class map {
         return null;
     }
 
+    public static civilization getCivilizationById(int id) {
+        for (civilization u : civs) {
+            if (u.getCivID() == id) return u;
+        }
+        return null;
+    }
+
     public static float getDistancePlanet(int targetPlanetID, int startPlanetID){
 
         planet targetPlanet = null;

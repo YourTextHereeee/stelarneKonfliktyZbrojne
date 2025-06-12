@@ -66,14 +66,12 @@ public class logistics {
 
         logistics logistics1 = new logistics(unitID, targetPlanetID, startPlanetID);
         map.logiQueue.add(logistics1);
-
-        //if (Math.abs(map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) >= Math.abs(map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords)){
-        //} else {
-        //}
+        ((ship) map.getUnitById(unitID)).setStatus("flying");
     }
 
     public void finishJourney(){
 
+        map.logiQueue.remove(this);
     }
 
     public void moveUnit(){
@@ -84,7 +82,9 @@ public class logistics {
             ((ship) map.getUnitById(this.unitID)).setYcoords( ((ship) map.getUnitById(this.unitID)).getYcoords() + (vectorY * ((ship) map.getUnitById(this.unitID)).getSpeed()) );
         } else {
 
-
+            ((ship) map.getUnitById(this.unitID)).setXcoords(map.getPlanetById(this.targetPlanetID).xcoords);
+            ((ship) map.getUnitById(this.unitID)).setYcoords(map.getPlanetById(this.targetPlanetID).ycoords);
+            this.finishJourney();
         }
 
     }
