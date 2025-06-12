@@ -31,9 +31,9 @@ public class simulation {
 
 
         //to będzie zarządzanie przez combat
-        lf1.dealDamage(2);
-        lf1.dealDamage(3);
-        t1.dealDamage(1);
+//        lf1.dealDamage(2);
+//        lf1.dealDamage(3);
+//        t1.dealDamage(1);
 
 
         System.out.println("SmallFighter " + sf1.getUnitID() + " health: " + sf1.getHealth());

@@ -1,6 +1,9 @@
 package mapTools;
 import units.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class planet {
 
     public int planetID;
@@ -28,6 +31,14 @@ public class planet {
 
     public void chpop(int a){
         this.population = a;
+    }
+
+    public int getPopulation(){
+        return this.population;
+    }
+
+    public void changeOwner(int owner) {
+        this.owner = owner;
     }
 
     public void produceUnit(int unitType){
@@ -92,6 +103,19 @@ public class planet {
 
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
         //produceUnit(1);
+    }
+
+    public List<unit> getUnitsForCivilization(int ownerID) {
+        List<unit> unites = new ArrayList<unit>();
+        for(unit unit : map.units){
+            if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords){
+                unites.add(unit);
+            }
+            if(unit.getXCoords() == this.planetID){
+                unites.add(unit);
+            }
+        }
+        return unites;
     }
 
     @Override

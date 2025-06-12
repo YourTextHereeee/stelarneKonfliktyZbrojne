@@ -1,6 +1,6 @@
 package units;
 
-public class unit {
+public abstract class unit {
 
     private int unitID;
     private int owner;
@@ -25,6 +25,30 @@ public class unit {
 
     public void setOwner(int owner) {
         this.owner = owner;
+    }
+
+    public void takeDamage(int damage){
+        throw new UnsupportedOperationException();
+    }
+
+    public void dealDamage(unit unit) {
+        throw new UnsupportedOperationException();
+    }
+
+    public int getHealth(){
+        throw new UnsupportedOperationException();
+    }
+
+    public int getXCoords(){
+        throw new UnsupportedOperationException();
+    }
+
+    public int getYCoords(){
+        throw new UnsupportedOperationException();
+    }
+
+    public int getTurretPlanetID(){
+        throw new UnsupportedOperationException();
     }
 
     // metoda do łatwego printowania

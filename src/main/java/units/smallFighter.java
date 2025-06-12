@@ -17,18 +17,8 @@ public class smallFighter extends ship {
         System.out.println("SmallFighter " + getUnitID() + " took " + damage + " damage, health now " + this.health);
     }
 
-    public void dealDamage(int targetUnitId) {
-        unit target = map.getUnitById(targetUnitId);
-        switch (target) {
-            case null -> {
-                System.out.println("Target unit not found.");
-            }
-            case largeFighter fighter -> fighter.takeDamage(DAMAGE);
-            case smallFighter fighter -> fighter.takeDamage(DAMAGE);
-            case turret turret -> turret.takeDamage(DAMAGE);
-            default -> System.out.println("Target unit cannot take damage.");
-        }
-
+    public void dealDamage(unit unit) {
+        unit.takeDamage(DAMAGE);
     }
 
     public int getHealth() {

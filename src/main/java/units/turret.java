@@ -55,16 +55,12 @@ public class turret extends unit {
         System.out.println("Turret " + getUnitID() + " took " + damage + " damage, health now " + this.health);
     }
 
-    public void dealDamage(int targetUnitId) {
-        unit target = map.getUnitById(targetUnitId);
-        switch (target) {
-            case null -> System.out.println("Target unit not found.");
-            case largeFighter fighter -> fighter.takeDamage(this.damage);
-            case smallFighter fighter -> fighter.takeDamage(this.damage);
-            case turret turret -> turret.takeDamage(this.damage);
-            default -> System.out.println("Target unit cannot take damage.");
-        }
+    public void dealDamage(unit unit) {
+        unit.takeDamage(DAMAGE);
+    }
 
+    public int getTurretPlanetID(){
+        return planetID;
     }
 
     @Override
