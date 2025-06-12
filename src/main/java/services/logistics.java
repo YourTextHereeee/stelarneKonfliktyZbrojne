@@ -78,7 +78,14 @@ public class logistics {
 
     public void moveUnit(){
 
+        if(map.getDistanceMap(map.getPlanetById(this.targetPlanetID).xcoords, map.getPlanetById(this.targetPlanetID).ycoords, ((ship) map.getUnitById(unitID)).getXcoords(), ((ship) map.getUnitById(unitID)).getYcoords()) > ((ship)map.getUnitById(this.unitID)).getSpeed()){
 
+            ((ship) map.getUnitById(this.unitID)).setXcoords( ((ship) map.getUnitById(this.unitID)).getXcoords() + (vectorX * ((ship) map.getUnitById(this.unitID)).getSpeed()) );
+            ((ship) map.getUnitById(this.unitID)).setYcoords( ((ship) map.getUnitById(this.unitID)).getYcoords() + (vectorY * ((ship) map.getUnitById(this.unitID)).getSpeed()) );
+        } else {
+
+
+        }
 
     }
 }

@@ -18,7 +18,7 @@ public class ship extends unit {
         return xcoords;
     }
 
-    public void setXcoords(int xcoords) {
+    public void setXcoords(float xcoords) {
         this.xcoords = xcoords;
     }
 
@@ -26,7 +26,7 @@ public class ship extends unit {
         return ycoords;
     }
 
-    public void setYcoords(int ycoords) {
+    public void setYcoords(float ycoords) {
         this.ycoords = ycoords;
     }
 
