@@ -70,8 +70,10 @@ public class combat {
                 }
                 map.getCivilizationById(attackerID).colonize(p.planetID, transporterID);
                 p.status = "idle";
+                p.owner = 0;
             } else {
                 p.status = "producing";
+                p.owner = attackerID;
             }
 
         } else if (attackingUnits.isEmpty()) {

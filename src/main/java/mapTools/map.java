@@ -18,6 +18,7 @@ public class map {
 
     public static int xWidth;
     public static int yHeight;
+    public static Random rng = new Random(simulation.seed);
 
     static int [][] plan;
 
@@ -69,7 +70,7 @@ public class map {
 
     public static void generateMap(int planetCount, int civCount){
 
-        Random rng = new Random(simulation.seed);
+
         int x, y;
         boolean spaceOccupied;
         boolean planetOccupied;
