@@ -67,7 +67,7 @@ public class civilization {
 
     public void colonize(int targetPlanetID, int startPlanetID) {
 
-        System.out.println(civID + " is colonizing a planet");
+        System.out.println(civID + " is colonizing a planet" + targetPlanetID);
         int transporterID = 0;
 
         for(unit ship: this.ownedUnits){
