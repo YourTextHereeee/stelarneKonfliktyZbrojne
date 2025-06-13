@@ -23,7 +23,7 @@ public class logistics {
         this.targetPlanetID = targetPlanetID;
         this.startPlanetID = startPlanetID;
         //this.movementCredit = 0;
-        System.out.println(map.getUnitById(unitID).getClass().getSimpleName());
+        //System.out.println(map.getUnitById(unitID).getClass().getSimpleName());
         this.ETA = (int) (map.getDistancePlanet(targetPlanetID, startPlanetID)/((ship) map.getUnitById(unitID)).getSpeed());
         this.vectorX = (map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
         this.vectorY = (map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
