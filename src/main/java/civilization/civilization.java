@@ -81,6 +81,10 @@ public class civilization {
     public void attack(planet targetPlanet, int attackerID, int defenderID) {
 
         //System.out.println(name + " is attacking unit " + target.getUnitID());
+        if(targetPlanet.combatCooldown > 0){
+            System.out.println("planet on cooldown");
+            return;
+        }
         new combat(targetPlanet, this.civID, targetPlanet.owner);
     }
 

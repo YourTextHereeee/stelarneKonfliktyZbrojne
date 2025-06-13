@@ -32,10 +32,6 @@ public class combat {
     public int getDefenderID() {return defenderID;}
 
     public void beginCombat(){
-        if(p.combatCooldown >= 0){
-            System.out.println("planet on cooldown");
-            return;
-        }
 
         System.out.println("Combat started on planet: " + p.planetID);
 
