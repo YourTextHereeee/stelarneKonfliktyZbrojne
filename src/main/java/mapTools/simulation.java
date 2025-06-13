@@ -167,8 +167,10 @@ public class simulation {
             item.progressColonization(ITE2);
         }
 
-        for (combat i : map.combatQueue){
-            i.progressCombat();
+        final Iterator<combat> ITE3 = map.combatQueue.iterator();
+        while (ITE3.hasNext()) {
+            final combat item = ITE3.next();
+            item.progressCombat(ITE3);
         }
 
         map.civs.removeIf(c -> c.getOwnedPlanets().isEmpty());

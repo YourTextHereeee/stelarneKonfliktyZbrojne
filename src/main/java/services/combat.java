@@ -1,10 +1,10 @@
 package services;
 import mapTools.map;
 import mapTools.planet;
-import mapTools.simulation;
 import units.transporter;
 import units.unit;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -23,6 +23,7 @@ public class combat {
         this.defenderID = defenderID;
         beginCombat();
         map.combatQueue.add(this);
+        this.cooldown = 0;
     }
 
     public planet getPlanet() {return p;}
@@ -37,7 +38,7 @@ public class combat {
         p.status = "combat";
     }
 
-    public void finishCombat(){
+    public void finishCombat(Iterator<combat> ITE3){
         if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
             System.out.println("Attacker wins!");
             p.changeOwner(attackerID);
@@ -72,9 +73,11 @@ public class combat {
         }
 
         System.out.println("Combat ended on planet: " + p.planetID);
+        ITE3.remove();
+
     }
 
-    public void progressCombat(){
+    public void progressCombat(Iterator<combat> ITE3){
 
         attackingUnits = p.getUnitsForCivilization(attackerID);
         defendingUnits = p.getUnitsForCivilization(defenderID);
@@ -119,7 +122,7 @@ public class combat {
             //p.alterPopulation(); <- to już jest w pętli w simulation
         }
         else if (cooldown >= 10) {
-            finishCombat();
+            finishCombat(ITE3);
         }
         cooldown ++;
     }
