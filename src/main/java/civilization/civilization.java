@@ -118,6 +118,7 @@ public class civilization {
                 this.colonize(targetPlanet.planetID, ownedPlanet.planetID);
             } else {
                 // napisz rozpoczynanie ataku ale dodaj wyżej check czy już nie ma wojny z tą cywilizacją
+                new combat(targetPlanet, this.civID, targetPlanet.owner);
             }
         }
     }
