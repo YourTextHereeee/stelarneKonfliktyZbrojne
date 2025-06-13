@@ -3,6 +3,7 @@ import units.*;
 import services.*;
 import civilization.*;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class simulation {
@@ -153,12 +154,17 @@ public class simulation {
             }
         }
 
-        for (logistics i : map.logiQueue){
-            i.moveUnit();
+        final Iterator<logistics> ITE = map.logiQueue.iterator();
+        while (ITE.hasNext()) {
+            final logistics item = ITE.next();
+            item.moveUnit(ITE);
         }
 
-        for (colonization i : map.colonizationQueue){
-            i.progressColonization();
+
+        final Iterator<colonization> ITE2 = map.colonizationQueue.iterator();
+        while (ITE2.hasNext()) {
+            final colonization item = ITE2.next();
+            item.progressColonization(ITE2);
         }
 
         for (combat i : map.combatQueue){

@@ -4,6 +4,8 @@ import mapTools.map;
 import mapTools.planet;
 import units.*;
 
+import java.util.Iterator;
+
 public class logistics {
 
     private int unitID;
@@ -21,6 +23,7 @@ public class logistics {
         this.targetPlanetID = targetPlanetID;
         this.startPlanetID = startPlanetID;
         //this.movementCredit = 0;
+        System.out.println(map.getUnitById(unitID).getClass().getSimpleName());
         this.ETA = (int) (map.getDistancePlanet(targetPlanetID, startPlanetID)/((ship) map.getUnitById(unitID)).getSpeed());
         this.vectorX = (map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
         this.vectorY = (map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
@@ -61,24 +64,30 @@ public class logistics {
 
     public static void beginJourney(int unitID, int targetPlanetID, int startPlanetID) {
 
+        if (map.getDistancePlanet(targetPlanetID, startPlanetID) == 0){
+            return;
+        }
+
         logistics logistics1 = new logistics(unitID, targetPlanetID, startPlanetID);
         map.logiQueue.add(logistics1);
         ((ship) map.getUnitById(unitID)).setStatus("flying");
-        if (map.getDistancePlanet(targetPlanetID, startPlanetID) == 0){
-            logistics1.finishJourney();
-        }
+
     }
 
-    public void finishJourney(){
+    public void finishJourney(Iterator<logistics> ITE){
 
-        map.logiQueue.remove(this);
+        ITE.remove();
         ((ship) map.getUnitById(unitID)).setStatus("idle");
     }
 
-    public void moveUnit(){
+    public void moveUnit(Iterator<logistics> ITE){
 
         planet targetPlanet = map.getPlanetById(this.targetPlanetID);
         ship ship = (ship) map.getUnitById(this.unitID);
+
+        if(ship == null) {
+            return;
+        }
 
         if(map.getDistanceMap(targetPlanet.xcoords, targetPlanet.ycoords, ship.getXCoords(), ship.getYCoords()) > ship.getSpeed()){
 
@@ -88,7 +97,7 @@ public class logistics {
 
             ship.setXcoords(targetPlanet.xcoords);
             ship.setYcoords(targetPlanet.ycoords);
-            this.finishJourney();
+            this.finishJourney(ITE);
         }
 
     }

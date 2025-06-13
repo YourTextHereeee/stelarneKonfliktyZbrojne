@@ -4,6 +4,8 @@ import mapTools.map;
 import mapTools.planet;
 import units.*;
 
+import java.util.Iterator;
+
 public class colonization {
 
     private int targetPlanetID;
@@ -50,14 +52,14 @@ public class colonization {
         map.colonizationQueue.add(colonization1);
     }
 
-    public void finishColonization(){
+    public void finishColonization(Iterator<colonization> ITE2){
 
-        map.colonizationQueue.remove(this);
+        ITE2.remove();
         ((ship) map.getUnitById(unitID)).setStatus("idle");
         map.getPlanetById(targetPlanetID).status = "producing";
     }
 
-    public void progressColonization() {
+    public void progressColonization(Iterator<colonization> ITE2) {
 
         ship ship = (ship) map.getUnitById(this.unitID);
         planet planet = (planet) map.getPlanetById(this.targetPlanetID);
@@ -73,7 +75,7 @@ public class colonization {
                 this.progress++;
             } else {
                 planet.setPopulation(planet.size * 100);
-                this.finishColonization();
+                this.finishColonization(ITE2);
             }
         }
     }
