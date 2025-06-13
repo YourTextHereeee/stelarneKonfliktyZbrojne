@@ -69,7 +69,7 @@ public class simulation {
         map.showMap();
 
         planet pla = map.planets.get(0);
-        pla.chpop(100);
+        //pla.setPopulation(1000);
 
         System.out.println(map.planets.get(0));
 
@@ -119,17 +119,24 @@ public class simulation {
         // tworzenie mapy (temp1 powinien tu być ilością planet, a temp3 ilością cywilizacji
         mapTools.map.generateMap(planetCount, civCount);
 
-        //nextGeneration();
+        // warunek na zakańczanie symulacji
+
+        //while (mapTools.map.civs.size() > 1) { //na razie wyłączone bo warunek zakańczający nigdy się nie spełnia
+            nextGeneration();
+        //}
+        endSimulation();
     }
 
     public static void endSimulation(){
 
-
+        System.out.print("\n\nZwycięzca: ");
+        System.out.println(map.civs);
     }
 
     public static void nextGeneration() {
 
         generation++;
+        System.out.print("\ngeneration: " + generation);
 
         //wszystkie metody które mają coś robić co generację - np planet.alterPopulation
         for (planet i : map.planets) {
@@ -141,18 +148,23 @@ public class simulation {
         }
 
         for (planet i : map.planets) {
-            i.makeDecision();
+            if (i.status.equals("producing")) {
+                i.makeDecision();
+            }
         }
 
         for (logistics i : map.logiQueue){
             i.moveUnit();
         }
 
-        // warunek na zakańczanie symulacji
-        if (map.civs.size() > 1) {
-            //nextGeneration();
-        } else {
-            endSimulation();
+        for (colonization i : map.colonizationQueue){
+            i.progressColonization();
         }
+
+        for (combat i : map.combatQueue){
+            i.progressCombat();
+        }
+
+        map.civs.removeIf(c -> c.getOwnedPlanets().isEmpty());
     }
 }

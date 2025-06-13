@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static mapTools.map.getCivilizationById;
+
 public class planet {
 
     public int planetID;
@@ -14,24 +16,26 @@ public class planet {
     public int population;
     public int xcoords;
     public int ycoords;
+    public int saturation;
 
     public String status;
     // idle, producing, combat
-
-
 
     public void alterPopulation() {
 
         if(Objects.equals(this.status, "combat")){
             this.population = (int) (this.population*0.9);
+            if (this.population < 10){ this.population = 0; }
         }
         else{
+            if (this.population >= this.size * 1000){ this.population = this.size * 1000; }
             this.population = (int) (this.population*1.1);
+            if (this.population >= this.size * 1000){ this.population = this.size * 1000; }
         }
 
     }
 
-    public void chpop(int a){
+    public void setPopulation(int a){
         this.population = a;
     }
 
@@ -57,6 +61,7 @@ public class planet {
             );
 
             map.units.add(sFighter);
+            map.getCivilizationById(this.owner).getOwnedUnits().add(sFighter);
         }
 
         if(unitType == 2){
@@ -71,6 +76,7 @@ public class planet {
             );
 
             map.units.add(lFighter);
+            map.getCivilizationById(this.owner).getOwnedUnits().add(lFighter);
         }
 
         if(unitType == 3){
@@ -84,55 +90,61 @@ public class planet {
             );
 
             map.units.add(turret);
+            map.getCivilizationById(this.owner).getOwnedUnits().add(turret);
         }
 
-        if(unitType == 4){
-
-            transporter transporter = new transporter(
-                    map.units.size() + 1,         // unitID
-                    this.owner,               // owner
-                    this.xcoords,          // starting X
-                    this.ycoords,          // starting Y
-                    5,                            // speed
-                    "idle"
-            );
-
-            map.units.add(transporter);
-        }
+//        if(unitType == 4){
+//
+//            transporter transporter = new transporter(
+//                    map.units.size() + 1,         // unitID
+//                    this.owner,               // owner
+//                    this.xcoords,          // starting X
+//                    this.ycoords,          // starting Y
+//                    5,                            // speed
+//                    "idle"
+//            );
+//
+//            map.units.add(transporter);
+//        }
     }
 
-    public void makeDecision(){
+    public void makeDecision() {
 
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
-        //produceUnit(1);
-        int i = 0;
-        Random rng = new Random(simulation.seed);
+        if (this.saturation >= 10 - this.population/1000) {
 
-        for (unit u: map.getCivilizationById(this.owner).getOwnedUnits()){
+            saturation = 0;
+            int i = 0;
+            Random rng = new Random(simulation.seed);
 
-            if (u instanceof turret){
-                i++;
+            for (unit u : getCivilizationById(this.owner).getOwnedUnits()) {
+
+                if (u instanceof turret) {
+                    i++;
+                }
             }
-        }
 
-        if (i == size){
-            this.produceUnit( rng.nextInt(1) + 1 );
+            if (i == size) {
+                this.produceUnit(rng.nextInt(1) + 1);
+            } else {
+                this.produceUnit(3);
+            }
         } else {
-            this.produceUnit( 3);
+            saturation++;
         }
     }
 
     public List<unit> getUnitsForCivilization(int ownerID) {
-        List<unit> unites = new ArrayList<>();
+        List<unit> units = new ArrayList<>();
         for(unit unit : map.units){
             if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords && unit.getOwner() == ownerID){
-                unites.add(unit);
+                units.add(unit);
             }
             if(unit.getTurretPlanetID() == this.planetID){
-                unites.add(unit);
+                units.add(unit);
             }
         }
-        return unites;
+        return units;
     }
 
     @Override
@@ -148,5 +160,6 @@ public class planet {
                 "}";
 
     }
+
 
 }

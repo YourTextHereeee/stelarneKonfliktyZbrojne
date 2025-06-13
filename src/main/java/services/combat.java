@@ -1,11 +1,18 @@
 package services;
 import mapTools.planet;
+import mapTools.simulation;
 import units.unit;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class combat {
+
+    public static void beginCombat(){}
+
+    public static void finishCombat(){}
+
+    public static void progressCombat(){}
 
     public void runCombat(planet p, int attackerID, int defenderID) {
         System.out.println("Combat started on planet: " + p.planetID);

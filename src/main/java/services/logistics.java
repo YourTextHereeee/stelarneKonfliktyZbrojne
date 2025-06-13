@@ -2,6 +2,7 @@ package services;
 
 import civilization.civilization;
 import mapTools.map;
+import mapTools.planet;
 import units.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class logistics {
     private int unitID;
     private int targetPlanetID;
     private int startPlanetID;
-    private float movementCredit;
+    //private float movementCredit;
     private int ETA;
     private float vectorX;
     private float vectorY;
@@ -22,7 +23,7 @@ public class logistics {
         this.unitID = unitID;
         this.targetPlanetID = targetPlanetID;
         this.startPlanetID = startPlanetID;
-        this.movementCredit = 0;
+        //this.movementCredit = 0;
         this.ETA = (int) (map.getDistancePlanet(targetPlanetID, startPlanetID)/((ship) map.getUnitById(unitID)).getSpeed());
         this.vectorX = (map.getPlanetById(targetPlanetID).xcoords - map.getPlanetById(startPlanetID).xcoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
         this.vectorY = (map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
@@ -53,37 +54,43 @@ public class logistics {
         this.startPlanetID = startPlanetID;
     }
 
-    public float getMovementCredit() {
-        return movementCredit;
-    }
+    //public float getMovementCredit() {
+    //    return movementCredit;
+    //}
 
-    public void setMovementCredit(float movementCredit) {
-        this.movementCredit = movementCredit;
-    }
-
+    //public void setMovementCredit(float movementCredit) {
+    //    this.movementCredit = movementCredit;
+    //}
 
     public static void beginJourney(int unitID, int targetPlanetID, int startPlanetID) {
 
         logistics logistics1 = new logistics(unitID, targetPlanetID, startPlanetID);
         map.logiQueue.add(logistics1);
         ((ship) map.getUnitById(unitID)).setStatus("flying");
+        if (map.getDistancePlanet(targetPlanetID, startPlanetID) == 0){
+            logistics1.finishJourney();
+        }
     }
 
     public void finishJourney(){
 
         map.logiQueue.remove(this);
+        ((ship) map.getUnitById(unitID)).setStatus("idle");
     }
 
     public void moveUnit(){
 
-        if(map.getDistanceMap(map.getPlanetById(this.targetPlanetID).xcoords, map.getPlanetById(this.targetPlanetID).ycoords, ((ship) map.getUnitById(unitID)).getXcoords(), ((ship) map.getUnitById(unitID)).getYcoords()) > ((ship)map.getUnitById(this.unitID)).getSpeed()){
+        planet targetPlanet = map.getPlanetById(this.targetPlanetID);
+        ship ship = (ship) map.getUnitById(this.unitID);
 
-            ((ship) map.getUnitById(this.unitID)).setXcoords( ((ship) map.getUnitById(this.unitID)).getXcoords() + (vectorX * ((ship) map.getUnitById(this.unitID)).getSpeed()) );
-            ((ship) map.getUnitById(this.unitID)).setYcoords( ((ship) map.getUnitById(this.unitID)).getYcoords() + (vectorY * ((ship) map.getUnitById(this.unitID)).getSpeed()) );
+        if(map.getDistanceMap(targetPlanet.xcoords, targetPlanet.ycoords, ship.getXcoords(), ship.getYcoords()) > ship.getSpeed()){
+
+            ship.setXcoords( ship.getXcoords() + (vectorX * ship.getSpeed()) );
+            ship.setYcoords( ship.getYcoords() + (vectorY * ship.getSpeed()) );
         } else {
 
-            ((ship) map.getUnitById(this.unitID)).setXcoords(map.getPlanetById(this.targetPlanetID).xcoords);
-            ((ship) map.getUnitById(this.unitID)).setYcoords(map.getPlanetById(this.targetPlanetID).ycoords);
+            ship.setXcoords(targetPlanet.xcoords);
+            ship.setYcoords(targetPlanet.ycoords);
             this.finishJourney();
         }
 

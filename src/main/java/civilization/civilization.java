@@ -1,16 +1,20 @@
 package civilization;
 
-import units.unit;
+import mapTools.map;
+import mapTools.simulation;
 import mapTools.planet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import units.*;
+
 import services.*;
 
 public class civilization {
 
     private int civID;
     private String name;
-    private int saturation;
+    private float saturation;
 
     private List<planet> ownedPlanets;
     private List<unit> ownedUnits;
@@ -61,25 +65,61 @@ public class civilization {
         ownedUnits.remove(u);
     }
 
-    public void colonize() {
+    public void colonize(int targetPlanetID, int startPlanetID) {
 
-        System.out.println(name + " is colonizing a planet");
+        //System.out.println(name + " is colonizing a planet");
+        int transporterID = 0;
+
+        for(unit ship: this.ownedUnits){
+            if (ship instanceof transporter) { transporterID = ship.getUnitID(); }
+        }
+
+        logistics.beginJourney(transporterID, targetPlanetID, startPlanetID);
+        colonization.beginColonization(targetPlanetID, transporterID, this.civID);
     }
 
     public void attack(unit target) {
 
-        System.out.println(name + " is attacking unit " + target.getUnitID());
+        //System.out.println(name + " is attacking unit " + target.getUnitID());
 
     }
 
     public void defend() {
 
-        System.out.println(name + " is defending");
+        //System.out.println(name + " is defending");
 
     }
 
     public void makeDecision() {
 
+        this.saturation = (float) this.getOwnedUnits().size() / this.getOwnedPlanets().size();
+
+        if (this.saturation >= 3){
+
+            Random rng = new Random(simulation.seed);
+            planet ownedPlanet = map.planets.get(rng.nextInt(map.planets.size()));
+
+            planet targetPlanet = null;
+            float bestDist = Float.MAX_VALUE;
+
+            for (planet candidate : map.planets) {
+                float dist = 0;
+                if (candidate.owner != this.civID) {
+                    dist = map.getDistancePlanet(candidate.planetID, ownedPlanet.planetID);
+                }
+                if (dist < bestDist) {
+                    bestDist = dist;
+                    targetPlanet = candidate;
+                }
+            }
+
+            assert targetPlanet != null;
+            if(targetPlanet.owner == 0){
+                this.colonize(targetPlanet.planetID, ownedPlanet.planetID);
+            } else {
+                // napisz rozpoczynanie ataku ale dodaj wyżej check czy już nie ma wojny z tą cywilizacją
+            }
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import units.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import services.*;
 
 public class map {
 
@@ -12,6 +13,8 @@ public class map {
     public static List<unit> units = new ArrayList<>();
     public static List<civilization> civs = new ArrayList<>();
     public static List<logistics> logiQueue = new ArrayList<>();
+    public static List<colonization> colonizationQueue = new ArrayList<>();
+    public static List<combat> combatQueue = new ArrayList<>();
 
     public static int xWidth;
     public static int yHeight;
