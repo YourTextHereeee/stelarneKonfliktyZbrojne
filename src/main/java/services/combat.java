@@ -1,4 +1,5 @@
 package services;
+import mapTools.map;
 import mapTools.planet;
 import mapTools.simulation;
 import units.unit;
@@ -8,22 +9,43 @@ import java.util.ArrayList;
 
 public class combat {
 
-    public static void beginCombat(){}
+    private final planet p;
+    private final int attackerID;
+    private final int defenderID;
+    private List<unit> attackingUnits;
+    private List<unit> defendingUnits;
 
-    public static void finishCombat(){}
+    public combat(planet p, int attackerID, int defenderID) {
+        this.p = p;
+        this.attackerID = attackerID;
+        this.defenderID = defenderID;
+        beginCombat();
+        map.combatQueue.add(this);
+    }
 
-    public static void progressCombat(){}
-
-    public void runCombat(planet p, int attackerID, int defenderID) {
+    public void beginCombat(){
         System.out.println("Combat started on planet: " + p.planetID);
 
         // zmiana statusu planety
         p.status = "combat";
 
-        List<unit> attackingUnits = p.getUnitsForCivilization(attackerID);
-        List<unit> defendingUnits = p.getUnitsForCivilization(defenderID);
+        attackingUnits = p.getUnitsForCivilization(attackerID);
+        defendingUnits = p.getUnitsForCivilization(defenderID);
+    }
 
-        while (!attackingUnits.isEmpty() && !defendingUnits.isEmpty() && p.getPopulation() > 0) {
+    public void finishCombat(){
+        if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
+            System.out.println("Attacker wins!");
+            p.changeOwner(attackerID);
+        } else if (attackingUnits.isEmpty()) {
+            System.out.println("Defender wins!");
+        }
+
+        System.out.println("Combat ended on planet: " + p.planetID);
+    }
+
+    public void progressCombat(){
+        if (!attackingUnits.isEmpty() && !defendingUnits.isEmpty() && p.getPopulation() > 0) {
 
             // offence
             List<unit> tempDefenders = new ArrayList<>(defendingUnits);
@@ -56,15 +78,8 @@ public class combat {
             // zmiana populacji
             p.alterPopulation();
         }
-
-        // koniec
-        if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
-            System.out.println("Attacker wins!");
-            p.changeOwner(attackerID);
-        } else if (attackingUnits.isEmpty()) {
-            System.out.println("Defender wins!");
-        }
-
-        System.out.println("Combat ended on planet: " + p.planetID);
+        else
+            finishCombat();
     }
+
 }
