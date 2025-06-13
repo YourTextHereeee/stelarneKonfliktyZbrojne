@@ -42,7 +42,12 @@ public class combat {
     public void finishCombat(Iterator<combat> ITE3){
         if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
             System.out.println("Attacker wins!");
+            System.out.println("atcID:" + attackerID + " defID:" + defenderID);
+            System.out.println(p.owner);
             p.changeOwner(attackerID);
+            System.out.println(p.owner);
+            System.out.println(p.xcoords);
+            System.out.println(p.ycoords);
 
             // ZROBIONE - ACHTUNG zmiana statusu planety i rozpoczęcie kolonizacji przez attackera na ifie
 

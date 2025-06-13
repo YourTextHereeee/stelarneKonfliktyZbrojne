@@ -180,5 +180,8 @@ public class simulation {
         }
 
         map.civs.removeIf(c -> c.getOwnedPlanets().isEmpty());
+
+        map.generateMapPreview();
+        map.showMap();
     }
 }

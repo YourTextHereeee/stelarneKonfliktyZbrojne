@@ -67,7 +67,7 @@ public class civilization {
 
     public void colonize(int targetPlanetID, int startPlanetID) {
 
-        System.out.println(name + " is colonizing a planet");
+        System.out.println(civID + " is colonizing a planet");
         int transporterID = 0;
 
         for(unit ship: this.ownedUnits){
@@ -85,7 +85,7 @@ public class civilization {
             System.out.println("planet on cooldown");
             return;
         }
-        new combat(targetPlanet, this.civID, targetPlanet.owner);
+        new combat(targetPlanet, attackerID, defenderID);
     }
 
     public void moveUnitsToCombat() {
@@ -127,16 +127,20 @@ public class civilization {
         if (this.saturation >= 3){
 
             Random rng = new Random(simulation.seed);
-            planet ownedPlanet = map.planets.get(rng.nextInt(map.planets.size()));
+            //planet ownedPlanet = map.planets.get(rng.nextInt(map.planets.size()));
+            planet ownedPlanet = this.ownedPlanets.get(rng.nextInt(this.ownedPlanets.size()));
+            System.out.println("TO:::::::::::::::::::::::::::::" + this.ownedPlanets);
 
             planet targetPlanet = null;
             float bestDist = Float.MAX_VALUE;
 
             for (planet candidate : map.planets) {
-                float dist = 0;
-                if (candidate.owner != this.civID) {
-                    dist = map.getDistancePlanet(candidate.planetID, ownedPlanet.planetID);
+
+                if (candidate.owner == this.civID){
+                    continue;
                 }
+                float dist = map.getDistancePlanet(candidate.planetID, ownedPlanet.planetID);
+
                 if (dist < bestDist) {
                     bestDist = dist;
                     targetPlanet = candidate;
@@ -148,6 +152,7 @@ public class civilization {
                 this.colonize(targetPlanet.planetID, ownedPlanet.planetID);
             } else if (!targetPlanet.status.equals("combat") ) {
                 this.attack(targetPlanet, this.civID, targetPlanet.owner);
+                System.out.println("attacker:" + this.civID + "targetplanetownerid:" + targetPlanet.owner);
             }
         }
     }
