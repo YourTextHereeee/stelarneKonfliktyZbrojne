@@ -15,6 +15,7 @@ public class civilization {
     private int civID;
     private String name;
     private float saturation;
+    private int combatCooldown;
 
     private List<planet> ownedPlanets;
     private List<unit> ownedUnits;
@@ -23,6 +24,7 @@ public class civilization {
         this.civID = civID;
         this.ownedPlanets = new ArrayList<>();
         this.ownedUnits = new ArrayList<>();
+        this.combatCooldown = 10;
     }
 
     public int getCivID() {
@@ -129,7 +131,7 @@ public class civilization {
             Random rng = new Random(simulation.seed);
             //planet ownedPlanet = map.planets.get(rng.nextInt(map.planets.size()));
             planet ownedPlanet = this.ownedPlanets.get(rng.nextInt(this.ownedPlanets.size()));
-            System.out.println("TO:::::::::::::::::::::::::::::" + this.ownedPlanets);
+            System.out.println("1TO:::::::::::::::::::::::::::::" + this.ownedPlanets);
 
             planet targetPlanet = null;
             float bestDist = Float.MAX_VALUE;
@@ -148,6 +150,7 @@ public class civilization {
             }
 
             assert targetPlanet != null;
+            System.out.println("TA:::---------" +  targetPlanet);
             if(targetPlanet.owner == 0){
                 this.colonize(targetPlanet.planetID, ownedPlanet.planetID);
             } else if (!targetPlanet.status.equals("combat") ) {

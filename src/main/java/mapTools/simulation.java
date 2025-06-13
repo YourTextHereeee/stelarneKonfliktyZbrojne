@@ -74,7 +74,7 @@ public class simulation {
 
         System.out.println(map.planets.get(0));
 
-        nextGeneration();
+
         System.out.println(map.planets.get(0));
 
     }
@@ -122,7 +122,8 @@ public class simulation {
 
         // warunek na zakańczanie symulacji
 
-        while (mapTools.map.civs.size() > 1) { //na razie wyłączone bo warunek zakańczający nigdy się nie spełnia
+        //while (mapTools.map.civs.size() > 1) { //na razie wyłączone bo warunek zakańczający nigdy się nie spełnia
+        for (int i = 1; i <= 100; i++) {
             nextGeneration();
         }
         endSimulation();
@@ -178,6 +179,12 @@ public class simulation {
                 i.combatCooldown--;
             }
         }
+
+//        for (civilization i : map.civs) {
+//            if(i.colonizationCooldown > 0){
+//                i.colonizationCooldown--;
+//            }
+//        }
 
         map.civs.removeIf(c -> c.getOwnedPlanets().isEmpty());
 

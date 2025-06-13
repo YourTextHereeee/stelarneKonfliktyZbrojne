@@ -131,6 +131,8 @@ public class map {
                     "idle"                        // status
             );
 
+
+
             civ.getOwnedUnits().add(ts);
 
             map.units.add(ts);

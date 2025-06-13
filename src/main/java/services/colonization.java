@@ -48,6 +48,13 @@ public class colonization {
 
     public static void beginColonization(int targetPlanetID, int unitID, int colonizerID) {
 
+        System.out.println("AAAAAAAAA" + map.getPlanetById(targetPlanetID).colonizationCooldown);
+
+        if (map.getPlanetById(targetPlanetID).colonizationCooldown > 0) {
+            System.out.println("col cooldown exitsts");
+            return;
+        }
+
         colonization colonization1 = new colonization(targetPlanetID, unitID, colonizerID);
         map.colonizationQueue.add(colonization1);
     }
@@ -57,6 +64,7 @@ public class colonization {
         ITE2.remove();
         ((ship) map.getUnitById(unitID)).setStatus("idle");
         map.getPlanetById(targetPlanetID).status = "producing";
+        map.getPlanetById(targetPlanetID).colonizationCooldown = 10;
     }
 
     public void progressColonization(Iterator<colonization> ITE2) {
