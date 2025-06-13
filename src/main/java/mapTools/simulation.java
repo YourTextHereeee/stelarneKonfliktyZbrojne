@@ -21,27 +21,27 @@ public class simulation {
         //testowe kilka statków + wymiana obrażeń
 
         //to będzie zarządzanie przez planetę
-        largeFighter lf1 = new largeFighter(1, 0, 100, 100, 10, "active");
-        smallFighter sf1 = new smallFighter(2, 1, 100, 100, 12, "active");
-        turret t1 = new turret(3, 1, 1, 1);
+//        largeFighter lf1 = new largeFighter(1, 0, 100, 100, 10, "active");
+//        smallFighter sf1 = new smallFighter(2, 1, 100, 100, 12, "active");
+//        turret t1 = new turret(3, 1, 1, 1);
 
-        map.units.add(lf1);
-        map.units.add(sf1);
-        map.units.add(t1);
+//        map.units.add(lf1);
+//        map.units.add(sf1);
+//        map.units.add(t1);
 
 
         //to będzie zarządzanie przez combat
 //        lf1.dealDamage(2);
 //        lf1.dealDamage(3);
 //        t1.dealDamage(1);
-        t1.dealDamage(lf1);
-        lf1.dealDamage(t1);
-        lf1.dealDamage(sf1);
+//        t1.dealDamage(lf1);
+//        lf1.dealDamage(t1);
+//        lf1.dealDamage(sf1);
 
 
-        System.out.println("SmallFighter " + sf1.getUnitID() + " health: " + sf1.getHealth());
-        System.out.println("Turret " + t1.getUnitID() + " health: " + t1.getHealth());
-        System.out.println("Large Fighter " + lf1);
+//        System.out.println("SmallFighter " + sf1.getUnitID() + " health: " + sf1.getHealth());
+//        System.out.println("Turret " + t1.getUnitID() + " health: " + t1.getHealth());
+//        System.out.println("Large Fighter " + lf1);
 
         //START
         beginSimulation();

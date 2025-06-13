@@ -55,7 +55,7 @@ public class planet {
         if(unitType == 1){
 
             smallFighter sFighter = new smallFighter(
-                    map.units.size() + 1,         // unitID
+                    unit.generateID(),         // unitID
                     this.owner,               // owner
                     this.xcoords,          // starting X
                     this.ycoords,          // starting Y
@@ -70,7 +70,7 @@ public class planet {
         if(unitType == 2){
 
             largeFighter lFighter = new largeFighter(
-                    map.units.size() + 1,         // unitID
+                    unit.generateID(),         // unitID
                     this.owner,               // owner
                     this.xcoords,          // starting X
                     this.ycoords,          // starting Y
@@ -85,7 +85,7 @@ public class planet {
         if(unitType == 3){
 
             turret turret = new turret(
-                    map.units.size() + 1,         // unitID
+                    unit.generateID(),         // unitID
                     this.owner,               // owner
                     this.planetID,          // location
                     1                       // status
@@ -99,7 +99,7 @@ public class planet {
 //        if(unitType == 4){
 //
 //            transporter transporter = new transporter(
-//                    map.units.size() + 1,         // unitID
+//                    unit.generateID(),         // unitID
 //                    this.owner,               // owner
 //                    this.xcoords,          // starting X
 //                    this.ycoords,          // starting Y

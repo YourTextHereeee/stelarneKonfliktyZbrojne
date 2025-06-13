@@ -123,7 +123,7 @@ public class map {
             startPlanet.status = "producing";
 
             transporter ts = new transporter(
-                    map.units.size() + 1,         // unitID
+                    unit.generateID(),         // unitID
                     civ.getCivID(),               // owner
                     startPlanet.xcoords,          // starting X
                     startPlanet.ycoords,          // starting Y

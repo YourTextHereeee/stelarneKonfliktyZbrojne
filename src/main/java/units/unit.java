@@ -2,6 +2,7 @@ package units;
 
 public abstract class unit {
 
+    private static int IDCount;
     private int unitID;
     private int owner;
 
@@ -9,6 +10,10 @@ public abstract class unit {
     public unit(int unitID, int owner) {
         this.unitID = unitID;
         this.owner = owner;
+    }
+
+    public static int generateID() {
+        return IDCount++;
     }
 
     public int getUnitID() {
