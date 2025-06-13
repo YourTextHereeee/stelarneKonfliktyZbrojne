@@ -88,8 +88,32 @@ public class civilization {
 
         // ACHTUNG zrobić funkcję wysyłania frajerów na śmierć na froncie
 
+        float distance = Float.MAX_VALUE;
+        combat closestCombat = null;
+        int startPlanetID = 0;
+
+        for (unit unit : this.ownedUnits){
+            if (!(unit instanceof turret)){
+
+                for (combat combat : map.combatQueue){
+                    if (map.getDistanceMap(unit.getXCoords(), unit.getYCoords(), combat.getPlanet().xcoords, combat.getPlanet().ycoords) < distance && (combat.getAttackerID() == this.civID || combat.getDefenderID() == this.civID)){
+                        distance = map.getDistanceMap(unit.getXCoords(), unit.getYCoords(), combat.getPlanet().xcoords, combat.getPlanet().ycoords);
+                        closestCombat = combat;
+                    }
+                }
+
+                for (planet planet : this.ownedPlanets) {
+                    if (planet.xcoords == unit.getXCoords() && planet.ycoords == unit.getYCoords()) {
+                        startPlanetID = planet.planetID;
+                    }
+                }
+
+                logistics.beginJourney(unit.getUnitID(), closestCombat.getPlanet().planetID, startPlanetID);
 
 
+
+            }
+        }
     }
 
     public void makeDecision() {

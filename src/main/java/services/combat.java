@@ -15,6 +15,7 @@ public class combat {
     private final int defenderID;
     private List<unit> attackingUnits;
     private List<unit> defendingUnits;
+    private int cooldown;
 
     public combat(planet p, int attackerID, int defenderID) {
         this.p = p;
@@ -24,14 +25,16 @@ public class combat {
         map.combatQueue.add(this);
     }
 
+    public planet getPlanet() {return p;}
+
+    public int getAttackerID() {return attackerID;}
+    public int getDefenderID() {return defenderID;}
+
     public void beginCombat(){
         System.out.println("Combat started on planet: " + p.planetID);
 
         // zmiana statusu planety
         p.status = "combat";
-
-        attackingUnits = p.getUnitsForCivilization(attackerID);
-        defendingUnits = p.getUnitsForCivilization(defenderID);
     }
 
     public void finishCombat(){
@@ -72,6 +75,12 @@ public class combat {
     }
 
     public void progressCombat(){
+
+        attackingUnits = p.getUnitsForCivilization(attackerID);
+        defendingUnits = p.getUnitsForCivilization(defenderID);
+        map.getCivilizationById(attackerID).moveUnitsToCombat();
+        map.getCivilizationById(defenderID).moveUnitsToCombat();
+
         if (!attackingUnits.isEmpty() && !defendingUnits.isEmpty() && p.getPopulation() > 0) {
 
             // offence
@@ -109,8 +118,9 @@ public class combat {
             // zmiana populacji
             //p.alterPopulation(); <- to już jest w pętli w simulation
         }
-        else
+        else if (cooldown >= 10) {
             finishCombat();
+        }
+        cooldown ++;
     }
-
 }
