@@ -145,7 +145,7 @@ public class planet {
             if(!unit.hasHealth())
                 continue;
             if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords && unit.getOwner() == ownerID && unit.getHealth() > 0){
-                System.out.println(unit);
+                //System.out.println(unit);
                 units.add(unit);
             }
         }
