@@ -44,7 +44,10 @@ public class planet {
     }
 
     public void changeOwner(int owner) {
+
+        map.getCivilizationById(owner).getOwnedPlanets().remove(this);
         this.owner = owner;
+        map.getCivilizationById(owner).getOwnedPlanets().add(this);
     }
 
     public void produceUnit(int unitType){

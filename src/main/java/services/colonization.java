@@ -54,6 +54,7 @@ public class colonization {
 
         map.colonizationQueue.remove(this);
         ((ship) map.getUnitById(unitID)).setStatus("idle");
+        map.getPlanetById(targetPlanetID).status = "producing";
     }
 
     public void progressColonization() {

@@ -121,16 +121,16 @@ public class simulation {
 
         // warunek na zakańczanie symulacji
 
-        //while (mapTools.map.civs.size() > 1) { //na razie wyłączone bo warunek zakańczający nigdy się nie spełnia
+        while (mapTools.map.civs.size() > 1) { //na razie wyłączone bo warunek zakańczający nigdy się nie spełnia
             nextGeneration();
-        //}
+        }
         endSimulation();
     }
 
     public static void endSimulation(){
 
         System.out.print("\n\nZwycięzca: ");
-        System.out.println(map.civs);
+        System.out.print(map.civs);
     }
 
     public static void nextGeneration() {

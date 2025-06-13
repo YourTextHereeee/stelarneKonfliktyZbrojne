@@ -67,7 +67,7 @@ public class civilization {
 
     public void colonize(int targetPlanetID, int startPlanetID) {
 
-        //System.out.println(name + " is colonizing a planet");
+        System.out.println(name + " is colonizing a planet");
         int transporterID = 0;
 
         for(unit ship: this.ownedUnits){
@@ -78,15 +78,17 @@ public class civilization {
         colonization.beginColonization(targetPlanetID, transporterID, this.civID);
     }
 
-    public void attack(unit target) {
+    public void attack(planet targetPlanet, int attackerID, int defenderID) {
 
         //System.out.println(name + " is attacking unit " + target.getUnitID());
-
+        new combat(targetPlanet, this.civID, targetPlanet.owner);
     }
 
-    public void defend() {
+    public void moveUnitsToCombat() {
 
-        //System.out.println(name + " is defending");
+        // ACHTUNG zrobić funkcję wysyłania frajerów na śmierć na froncie
+
+
 
     }
 
@@ -116,9 +118,8 @@ public class civilization {
             assert targetPlanet != null;
             if(targetPlanet.owner == 0){
                 this.colonize(targetPlanet.planetID, ownedPlanet.planetID);
-            } else {
-                // napisz rozpoczynanie ataku ale dodaj wyżej check czy już nie ma wojny z tą cywilizacją
-                new combat(targetPlanet, this.civID, targetPlanet.owner);
+            } else if (!targetPlanet.status.equals("combat") ) {
+                this.attack(targetPlanet, this.civID, targetPlanet.owner);
             }
         }
     }
