@@ -23,12 +23,17 @@ public class cargo extends ship {
     }
 
     @Override
+    public boolean hasHealth() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "CargoShip{" +
                 "unitID=" + getUnitID() +
                 ", owner=" + getOwner() +
-                ", xcoords=" + getXcoords() +
-                ", ycoords=" + getYcoords() +
+                ", xcoords=" + getXCoords() +
+                ", ycoords=" + getYCoords() +
                 ", speed=" + getSpeed() +
                 ", status='" + getStatus() + '\'' +
                 ", cargoType='" + cargoType + '\'' +

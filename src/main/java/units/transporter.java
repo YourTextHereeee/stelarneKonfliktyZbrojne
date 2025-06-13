@@ -23,12 +23,17 @@ public class transporter extends ship {
     }
 
     @Override
+    public boolean hasHealth() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "TransporterShip{" +
                 "unitID=" + getUnitID() +
                 ", owner=" + getOwner() +
-                ", xcoords=" + getXcoords() +
-                ", ycoords=" + getYcoords() +
+                ", xcoords=" + getXCoords() +
+                ", ycoords=" + getYCoords() +
                 ", speed=" + getSpeed() +
                 ", status='" + getStatus() + '\'' +
                 ", loaded=" + loaded +

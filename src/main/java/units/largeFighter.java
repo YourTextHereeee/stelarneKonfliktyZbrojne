@@ -30,8 +30,8 @@ public class largeFighter extends ship {
         return "LargeFighter {" +
                 "unitID=" + getUnitID() +
                 ", owner=" + getOwner() +
-                ", xcoords=" + getXcoords() +
-                ", ycoords=" + getYcoords() +
+                ", xcoords=" + getXCoords() +
+                ", ycoords=" + getYCoords() +
                 ", speed=" + getSpeed() +
                 ", status='" + getStatus() + '\'' +
                 ", health=" + health +

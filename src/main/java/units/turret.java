@@ -1,5 +1,9 @@
 package units;
 
+
+import mapTools.map;
+import mapTools.planet;
+
 public class turret extends unit {
     public static final int DAMAGE = 80;
     private static final int HEALTH = 200;
@@ -46,6 +50,16 @@ public class turret extends unit {
 
     public void setTurretStatus(int turretStatus) {
         this.turretStatus = turretStatus;
+    }
+
+    @Override
+    public int getXCoords() {
+        return map.planets.get(planetID).xcoords;
+    }
+
+    @Override
+    public int getYCoords() {
+        return map.planets.get(planetID).ycoords;
     }
 
     public void takeDamage(int damage) {

@@ -33,8 +33,8 @@ public class smallFighter extends ship {
         return "SmallFighter{" +
                 "unitID=" + getUnitID() +
                 ", owner=" + getOwner() +
-                ", xcoords=" + getXcoords() +
-                ", ycoords=" + getYcoords() +
+                ", xcoords=" + getXCoords() +
+                ", ycoords=" + getYCoords() +
                 ", speed=" + getSpeed() +
                 ", status='" + getStatus() + '\'' +
                 ", health=" + health +

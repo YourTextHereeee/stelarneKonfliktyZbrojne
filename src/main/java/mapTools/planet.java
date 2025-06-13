@@ -140,10 +140,9 @@ public class planet {
     public List<unit> getUnitsForCivilization(int ownerID) {
         List<unit> units = new ArrayList<>();
         for(unit unit : map.units){
+            if(!unit.hasHealth())
+                continue;
             if(unit.getXCoords() == this.xcoords && unit.getYCoords() == this.ycoords && unit.getOwner() == ownerID && unit.getHealth() > 0){
-                units.add(unit);
-            }
-            if(unit.getTurretPlanetID() == this.planetID && unit.getHealth() > 0){
                 units.add(unit);
             }
         }

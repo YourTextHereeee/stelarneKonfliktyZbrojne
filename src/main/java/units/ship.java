@@ -1,8 +1,8 @@
 package units;
 
 public class ship extends unit {
-    private float xcoords;
-    private float ycoords;
+    private int xcoords;
+    private int ycoords;
     private int speed;
     private String status;
     // idle, flying, fighting, colonizing
@@ -15,20 +15,21 @@ public class ship extends unit {
         this.status = status;
     }
 
-    public float getXcoords() {
+    @Override
+    public int getXCoords() {
         return xcoords;
     }
 
     public void setXcoords(float xcoords) {
-        this.xcoords = xcoords;
+        this.xcoords = (int) xcoords;
     }
 
-    public float getYcoords() {
+    public int getYCoords() {
         return ycoords;
     }
 
     public void setYcoords(float ycoords) {
-        this.ycoords = ycoords;
+        this.ycoords = (int) ycoords;
     }
 
     public int getSpeed() {

@@ -35,6 +35,10 @@ public abstract class unit {
         throw new UnsupportedOperationException();
     }
 
+    public boolean hasHealth(){
+        return true;
+    }
+
     public int getHealth(){
         throw new UnsupportedOperationException();
     }

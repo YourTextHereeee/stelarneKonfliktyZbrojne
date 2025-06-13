@@ -1,11 +1,8 @@
 package services;
 
-import civilization.civilization;
 import mapTools.map;
 import mapTools.planet;
 import units.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class logistics {
 
@@ -83,10 +80,10 @@ public class logistics {
         planet targetPlanet = map.getPlanetById(this.targetPlanetID);
         ship ship = (ship) map.getUnitById(this.unitID);
 
-        if(map.getDistanceMap(targetPlanet.xcoords, targetPlanet.ycoords, ship.getXcoords(), ship.getYcoords()) > ship.getSpeed()){
+        if(map.getDistanceMap(targetPlanet.xcoords, targetPlanet.ycoords, ship.getXCoords(), ship.getYCoords()) > ship.getSpeed()){
 
-            ship.setXcoords( ship.getXcoords() + (vectorX * ship.getSpeed()) );
-            ship.setYcoords( ship.getYcoords() + (vectorY * ship.getSpeed()) );
+            ship.setXcoords( ship.getXCoords() + (vectorX * ship.getSpeed()) );
+            ship.setYcoords( ship.getYCoords() + (vectorY * ship.getSpeed()) );
         } else {
 
             ship.setXcoords(targetPlanet.xcoords);
