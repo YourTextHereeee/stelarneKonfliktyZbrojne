@@ -19,6 +19,7 @@ public class planet {
     public int xcoords;
     public int ycoords;
     public int saturation;
+    public int combatCooldown = 0;
 
     public String status;
     // idle, producing, combat

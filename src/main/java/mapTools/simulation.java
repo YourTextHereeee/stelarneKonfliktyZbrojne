@@ -173,6 +173,12 @@ public class simulation {
             item.progressCombat(ITE3);
         }
 
+        for (planet i : map.planets) {
+            if(i.combatCooldown > 0){
+                i.combatCooldown--;
+            }
+        }
+
         map.civs.removeIf(c -> c.getOwnedPlanets().isEmpty());
     }
 }

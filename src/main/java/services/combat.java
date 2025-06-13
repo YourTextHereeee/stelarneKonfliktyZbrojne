@@ -32,6 +32,11 @@ public class combat {
     public int getDefenderID() {return defenderID;}
 
     public void beginCombat(){
+        if(p.combatCooldown >= 0){
+            System.out.println("planet on cooldown");
+            return;
+        }
+
         System.out.println("Combat started on planet: " + p.planetID);
 
         // zmiana statusu planety
@@ -74,6 +79,7 @@ public class combat {
 
         System.out.println("Combat ended on planet: " + p.planetID);
         ITE3.remove();
+        p.combatCooldown = 10;
 
     }
 
