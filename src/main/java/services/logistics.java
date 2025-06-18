@@ -29,6 +29,17 @@ public class logistics {
         this.vectorY = (map.getPlanetById(targetPlanetID).ycoords - map.getPlanetById(startPlanetID).ycoords) / map.getDistancePlanet(targetPlanetID, startPlanetID);
     }
 
+    public int getETA() {
+        return ETA;
+    }
+
+    public float getVectorX() {
+        return vectorX;
+    }
+
+    public float getVectorY() {
+        return vectorY;
+    }
 
     public int getUnitID() {
         return unitID;
