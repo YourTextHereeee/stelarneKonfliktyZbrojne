@@ -3,9 +3,17 @@ package services;
 import mapTools.map;
 import mapTools.planet;
 import units.*;
-
 import java.util.Iterator;
 
+/**
+ * Klasa odpowiedzialna za proces kolonizowania planet. Zarządza
+ * statusem planety, statku kolonizującego i listami posiadanych
+ * planet cywilizacji kolonizującej
+ *
+ * @see unit
+ * @see map
+ * @see planet
+ */
 public class colonization {
 
     private int targetPlanetID;
@@ -14,6 +22,14 @@ public class colonization {
     private short progress;
 
     //konstruktor
+
+    /**
+     * Konstruktor klasy
+     *
+     * @param targetPlanetID
+     * @param unitID
+     * @param colonizerID
+     */
     public colonization(int targetPlanetID, int unitID, int colonizerID) {
         this.targetPlanetID = targetPlanetID;
         this.unitID = unitID;
@@ -45,7 +61,13 @@ public class colonization {
         this.progress = progress;
     }
 
-
+    /**
+     * Algorytm rozpoczynania kolonizacji
+     *
+     * @param targetPlanetID
+     * @param unitID
+     * @param colonizerID
+     */
     public static void beginColonization(int targetPlanetID, int unitID, int colonizerID) {
 
         colonization colonization1 = new colonization(targetPlanetID, unitID, colonizerID);
@@ -53,6 +75,11 @@ public class colonization {
         colonization1.progress = 0;
     }
 
+    /**
+     * Zakańczanie kolonizacji
+     *
+     * @param ITE2
+     */
     public void finishColonization(Iterator<colonization> ITE2){
 
         ITE2.remove();
@@ -60,6 +87,11 @@ public class colonization {
         map.getPlanetById(targetPlanetID).status = "producing";
     }
 
+    /**
+     * Algorytm progresowania kolonizacji - sprawdza progress i podejmuje
+     * odpowiednie działania
+     * @param ITE2
+     */
     public void progressColonization(Iterator<colonization> ITE2) {
 
         ship ship = (ship) map.getUnitById(this.unitID);

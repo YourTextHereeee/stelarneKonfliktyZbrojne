@@ -1,8 +1,22 @@
 package units;
 
+/**
+ * Klasa reprezentująca jednostkę transportera ludzi,
+ * używanego do kolonizacji
+ */
 public class transporter extends ship {
     private boolean loaded = false;
 
+    /**
+     * Konstruktor transportera
+     *
+     * @param unitID
+     * @param owner
+     * @param xcoords
+     * @param ycoords
+     * @param speed
+     * @param status
+     */
     public transporter(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner, xcoords, ycoords, speed, status);
         this.loaded = false;

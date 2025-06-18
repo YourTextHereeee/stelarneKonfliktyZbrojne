@@ -1,5 +1,10 @@
 package units;
 
+/**
+ * Abstrakcyjna klasa jednostek, która reprezentuje każdy typ jednostki
+ * w symulacji. Zawiera kilka parametrów dotyczących każedj jednostki -
+ * - unitID i własciciela
+ */
 public abstract class unit {
 
     private static int IDCount;

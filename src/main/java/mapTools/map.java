@@ -7,6 +7,21 @@ import java.util.List;
 import java.util.Random;
 import services.*;
 
+/**
+ * Reprezentuje całą mapę - zarówno planszę o koordynatach x i y,
+ * jak i listę wszystkich obiektów na mapie - cywilizacji, unitów,
+ * planet, jak i procesów z grupy services
+ *
+ * Zadaniem klasy jest przetwarzanie operacji matematycznych
+ * dotyczących obliczania odległości, umiejscowienia, jak i przechowywanie
+ * wszystkich danych fizycznych każdej jednostki, cywilizacji i planety
+ *
+ * @see unit
+ * @see services
+ * @see civilization
+ * @see planet
+ * @see simulation
+ */
 public class map {
 
     public static List<planet> planets = new ArrayList<>();
@@ -22,7 +37,13 @@ public class map {
 
     static int [][] plan;
 
-
+    /**
+     * Oddaje konkretną jednostkę z listy jednostek na podstawie
+     * podanego ID
+     *
+     * @param id
+     * @return unit
+     */
     public static unit getUnitById(int id) {
         for (unit u : units) {
             if (u.getUnitID() == id) return u;
@@ -44,6 +65,13 @@ public class map {
         return null;
     }
 
+    /**
+     * Oblicza dystans między dwoma planetami na podstawie ich ID
+     *
+     * @param targetPlanetID
+     * @param startPlanetID
+     * @return distance
+     */
     public static float getDistancePlanet(int targetPlanetID, int startPlanetID){
 
         planet targetPlanet = null;
@@ -63,11 +91,26 @@ public class map {
         return (float) Math.sqrt(differenceX*differenceX + differenceY*differenceY);
     }
 
+    /**
+     * oblicza dystans między dwoma dowolnymi miejscami na planszy
+     * @param targetX
+     * @param targetY
+     * @param startX
+     * @param startY
+     * @return distnace
+     */
     public static float getDistanceMap(float targetX, float targetY, float startX, float startY){
 
         return (float) Math.sqrt(Math.pow(targetX - startX, 2) + Math.pow(targetY - startY, 2));
     }
 
+    /**
+     * Algorytm odpowiadający za generację mapy na podstawie podanego
+     * seedu, ilości planet i cywilizacji
+     *
+     * @param planetCount
+     * @param civCount
+     */
     public static void generateMap(int planetCount, int civCount){
 
 
@@ -142,12 +185,19 @@ public class map {
         }
     }
 
+    /**
+     * Algorytm odpowiedzialny za generowanie wizualizacji planszy
+     */
     public static void generateMapPreview(){
         plan = new int[xWidth][yHeight];
         for (planet pl1 : map.planets){
             plan[pl1.xcoords][pl1.ycoords] = pl1.owner+1;
         }
     }
+
+    /**
+     * Algorytm odpowiedzialny za wyswietlanie wizualizacji planszy
+     */
     public static void showMap(){
 
         for(int i = 0; i < map.xWidth; i++){

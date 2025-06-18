@@ -1,4 +1,5 @@
 package services;
+
 import mapTools.map;
 import mapTools.planet;
 import units.transporter;
@@ -8,6 +9,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Reprezentuje bitwę o konkretną planetę pomiędzy dwoma cywilizacjami
+ *
+ * Klasa odpowiada za przetwarzanie logiki bitwy, progresowanie jej i
+ * zakańćzanie
+ *
+ * @see map
+ * @see units
+ */
 public class combat {
 
     private final planet p;
@@ -17,6 +27,13 @@ public class combat {
     private List<unit> defendingUnits;
     private int cooldown;
 
+    /**
+     * Konstruktor klasy
+     *
+     * @param p
+     * @param attackerID
+     * @param defenderID
+     */
     public combat(planet p, int attackerID, int defenderID) {
         this.p = p;
         this.attackerID = attackerID;
@@ -27,10 +44,12 @@ public class combat {
     }
 
     public planet getPlanet() {return p;}
-
     public int getAttackerID() {return attackerID;}
     public int getDefenderID() {return defenderID;}
 
+    /**
+     * Rozpoczynanie bitwy
+     */
     public void beginCombat(){
 
         System.out.println("Combat started on planet: " + p.planetID);
@@ -39,6 +58,10 @@ public class combat {
         p.status = "combat";
     }
 
+    /**
+     * Algorytm zakańczania bitwy
+     * @param ITE3
+     */
     public void finishCombat(Iterator<combat> ITE3){
         if (defendingUnits.isEmpty() || p.getPopulation() <= 0) {
             System.out.println("Attacker wins!");
@@ -86,6 +109,11 @@ public class combat {
 
     }
 
+    /**
+     * Algorytm przetwarzania bitwy z generacji na generację - zadaje obrażenia,
+     * zmienia populację, podejmuje decyzję czy bitwa może być kontynuowana
+     * @param ITE3
+     */
     public void progressCombat(Iterator<combat> ITE3){
 
         attackingUnits = p.getUnitsForCivilization(attackerID);

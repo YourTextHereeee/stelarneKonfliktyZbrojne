@@ -6,6 +6,18 @@ import units.*;
 
 import java.util.Iterator;
 
+/**
+ * Klasa zarządza logostyką, konkrentie odpowiada za przenoszenie
+ * statków w przestrzeni od wyznaczonego punktu A do wyznaczoengo
+ * punktu B
+ *
+ * Oblicza wektory kierunku i przesuwa zgodnie z nimi jednostkę na
+ * podstawie jej prędkości
+ *
+ * @see map
+ * @see planet
+ * @see units
+ */
 public class logistics {
 
     private int unitID;
@@ -18,6 +30,14 @@ public class logistics {
 
 
     // konstruktor
+
+    /**
+     * Konstruktor klasy
+     *
+     * @param unitID
+     * @param targetPlanetID
+     * @param startPlanetID
+     */
     public logistics(int unitID, int targetPlanetID, int startPlanetID) {
         this.unitID = unitID;
         this.targetPlanetID = targetPlanetID;
@@ -73,6 +93,13 @@ public class logistics {
     //    this.movementCredit = movementCredit;
     //}
 
+    /**
+     * Algorytm rozpoczynania podróży - tworzy instancję logistics
+     *
+     * @param unitID
+     * @param targetPlanetID
+     * @param startPlanetID
+     */
     public static void beginJourney(int unitID, int targetPlanetID, int startPlanetID) {
 
         if (map.getDistancePlanet(targetPlanetID, startPlanetID) == 0){
@@ -85,12 +112,23 @@ public class logistics {
 
     }
 
+    /**
+     * Zakańczanie podróży i usuwanie instancji logistyki
+     *
+     * @param ITE
+     */
     public void finishJourney(Iterator<logistics> ITE){
 
         ITE.remove();
         ((ship) map.getUnitById(unitID)).setStatus("idle");
     }
 
+    /**
+     * Algorytm przenoszenia jednostki na podstawie obliczonych
+     * wektorów i jej prędkości
+     *
+     * @param ITE
+     */
     public void moveUnit(Iterator<logistics> ITE){
 
         planet targetPlanet = map.getPlanetById(this.targetPlanetID);

@@ -6,12 +6,28 @@ import civilization.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Klasa jest centrum całej symulacji - odpwowiada za rozpoczynanie symulacji,
+ * pobieranie danych od użytkownika, inizjalizowanie wszystkcich esencjalnych
+ * procesów, jak i, przede wszystkicm, system generacji.
+ *
+ * @see civilization
+ * @see mapTools
+ * @see services
+ * @see units
+ */
 public class simulation {
 
     public static long seed;
     public static long generation;
 
     //MAIN \/
+
+    /**
+     * Funkcja Main całej symulacji - tutaj odbywa się inicjalizowanie
+     * procesów symulacji
+     * @param args
+     */
     public static void main(String[] args) {
 
         System.out.print("kompilacja zakończona sukcesem :) \n\n");
@@ -80,6 +96,10 @@ public class simulation {
     }
     //MAIN /\
 
+    /**
+     * Metoda odpowiedzialna za inicjalizowanie wszystkich potrzebnych procesów,
+     * w tym generacji mapy i pobieranie danych od użytkownika
+     */
     public static void beginSimulation(){
 
         //Wprowadzanie info do startu symulacji (na razie w wersji konsolowej)
@@ -128,12 +148,19 @@ public class simulation {
         endSimulation();
     }
 
+    /**
+     * Prosty algorytm zakańćzania symulacji
+     */
     public static void endSimulation(){
 
         System.out.print("\n\nZwycięzca: ");
         System.out.print(map.civs);
     }
 
+    /**
+     * Metoda odpowiedzialna za postępowanie wszystkich procesów
+     * z generacji na genrację
+     */
     public static void nextGeneration() {
 
         generation++;

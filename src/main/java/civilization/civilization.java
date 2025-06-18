@@ -10,6 +10,20 @@ import units.*;
 
 import services.*;
 
+/**
+ * Reprezentuje cywilizacje, z ich ID, listą posiadanych planet,
+ * listą posiadanych jednostek i kilkoma parametrami obecnymi
+ * do obliczeń.
+ *
+ * klasa ma za zadanie przetwarzać logikę podejmowania przez
+ * cywilizację decyzji, w tym podejmowanie decyzji o rodzaju
+ * działania w danej turze i zarządzanie rozmieszczeniem
+ * jednostek
+ *
+ * @see planet
+ * @see unit
+ * @see map
+ */
 public class civilization {
 
     private int civID;
@@ -20,6 +34,11 @@ public class civilization {
     private List<planet> ownedPlanets;
     private List<unit> ownedUnits;
 
+    /**
+     * Konstruktor klasy
+     *
+     * @param civID
+     */
     public civilization(int civID) {
         this.civID = civID;
         this.ownedPlanets = new ArrayList<>();
@@ -67,6 +86,12 @@ public class civilization {
         ownedUnits.remove(u);
     }
 
+    /**
+     * Zarządza procesem rozpoczynania kolonizacji - znajduje
+     * transporter, wysyła go i inicjalizuje konolizację
+     * @param targetPlanetID
+     * @param startPlanetID
+     */
     public void colonize(int targetPlanetID, int startPlanetID) {
 
         System.out.println(civID + " is colonizing a planet" + targetPlanetID);
@@ -80,6 +105,14 @@ public class civilization {
         colonization.beginColonization(targetPlanetID, transporterID, this.civID);
     }
 
+    /**
+     * Zarządza procesem atakowania innych planet - inizjalizuje
+     * combat
+     *
+     * @param targetPlanet
+     * @param attackerID
+     * @param defenderID
+     */
     public void attack(planet targetPlanet, int attackerID, int defenderID) {
 
         //System.out.println(name + " is attacking unit " + target.getUnitID());
@@ -90,6 +123,11 @@ public class civilization {
         new combat(targetPlanet, attackerID, defenderID);
     }
 
+    /**
+     * Zarządza umiejscowieniem jednostek - wybiera najbliższe
+     * dla danej jednostki miejsce docelowe i wysyła ją tam
+     * za pomocy logistics
+     */
     public void moveUnitsToCombat() {
 
         // ACHTUNG zrobić funkcję wysyłania frajerów na śmierć na froncie
@@ -122,6 +160,10 @@ public class civilization {
         }
     }
 
+    /**
+     * Mózg cywilizacji - metoda odpowiedzialna za podejmowanie
+     * decyzji na podstawie kilku dostępnych parametrów
+     */
     public void makeDecision() {
 
         this.saturation = (float) this.getOwnedUnits().size() / this.getOwnedPlanets().size();

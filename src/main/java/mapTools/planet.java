@@ -10,6 +10,17 @@ import java.util.Objects;
 
 import static mapTools.map.getCivilizationById;
 
+/**
+ * Reprezentuje planety, w tym ich ID, rozmiar, zasoby, właśicicela,
+ * koordynaty i populację
+ *
+ * Ma za zadanie przetwarzać logikę działania planet, w tym produkcję
+ * jednostek
+ *
+ * @see map
+ * @see unit
+ *
+ */
 public class planet {
 
     public int planetID;
@@ -24,6 +35,9 @@ public class planet {
     public String status;
     // idle, producing, combat
 
+    /**
+     * Wprowadza zmiany w populacji planety na podstawie jej statusu
+     */
     public void alterPopulation() {
 
         if(Objects.equals(this.status, "combat")){
@@ -53,6 +67,10 @@ public class planet {
         map.getCivilizationById(owner).getOwnedPlanets().add(this);
     }
 
+    /**
+     * tworzy jednostkę na podstawie podanego typu
+     * @param unitType
+     */
     public void produceUnit(int unitType){
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo
         if(unitType == 1){
@@ -114,6 +132,10 @@ public class planet {
 //        }
     }
 
+    /**
+     * podejmuje decyzję czy i jaką jendostkę stworzyć na podstawie
+     * statusu planety i czasu który upłynął od ostatniego stworzenia
+     */
     public void makeDecision() {
 
         // 1 - sFighter 2 - lFighter 3 - turret 4 - transporter 5 - cargo z czego te dwa ostatnie nie są produkowane
@@ -140,6 +162,13 @@ public class planet {
         }
     }
 
+    /**
+     * oddaje listę wszystkich jednostek należących do podanej cywilizacji
+     * znajdujących się na tej planecie
+     *
+     * @param ownerID
+     * @return
+     */
     public List<unit> getUnitsForCivilization(int ownerID) {
         List<unit> units = new ArrayList<>();
         for(unit unit : map.units){

@@ -1,9 +1,14 @@
 package units;
 
-
 import mapTools.map;
 import mapTools.planet;
 
+/**
+ * Klasa reprezentująca jednostkę działka sacjonarnego - przypisanego
+ * do konkretnej planety
+ *
+ * @see map
+ */
 public class turret extends unit {
     public static final int DAMAGE = 80;
     private static final int HEALTH = 200;
@@ -12,6 +17,14 @@ public class turret extends unit {
     private int damage;
     private int turretStatus;
 
+    /**
+     * Konstruktor
+     *
+     * @param unitID
+     * @param owner
+     * @param planetID
+     * @param turretStatus
+     */
     public turret(int unitID, int owner, int planetID, int turretStatus) {
         super(unitID, owner);
         this.planetID = planetID;
@@ -62,18 +75,24 @@ public class turret extends unit {
         return map.planets.get(planetID).ycoords;
     }
 
+    /**
+     * Metoda przyjmowania obrażeń - zmienia życie jendostki
+     *
+     * @param damage
+     */
     public void takeDamage(int damage) {
         this.health -= damage;
         if (this.health < 0) this.health = 0;
         System.out.println("Turret " + getUnitID() + " took " + damage + " damage, health now " + this.health);
     }
 
+    /**
+     * Metoda zadawania obrażeń innej podanej jednostce
+     *
+     * @param unit
+     */
     public void dealDamage(unit unit) {
         unit.takeDamage(DAMAGE);
-    }
-
-    public int getTurretPlanetID(){
-        return planetID;
     }
 
     @Override

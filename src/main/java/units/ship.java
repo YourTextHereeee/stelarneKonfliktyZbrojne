@@ -1,5 +1,10 @@
 package units;
 
+/**
+ * Klasa reprezentująca jednostki mobilne - statki. Statki mają
+ * swoje koordynaty i prędkość, wykorzystywane przy przemieszczaniu
+ * się
+ */
 public class ship extends unit {
     private int xcoords;
     private int ycoords;
@@ -7,6 +12,16 @@ public class ship extends unit {
     private String status;
     // idle, flying, fighting, colonizing
 
+    /**
+     * Konstruktor dla ship
+     *
+     * @param unitID
+     * @param owner
+     * @param xcoords
+     * @param ycoords
+     * @param speed
+     * @param status
+     */
     public ship(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner);
         this.xcoords = xcoords;

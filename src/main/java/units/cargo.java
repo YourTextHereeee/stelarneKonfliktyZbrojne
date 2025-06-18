@@ -1,5 +1,9 @@
 package units;
 
+/**
+ * Martwa klasa - miał być statek cargo przenoszący zasoby ale
+ * ostatecznie ta funkcjonalność nie została wprowadzona
+ */
 public class cargo extends ship {
     private String cargoType;
 
