@@ -5,6 +5,16 @@ public class smallFighter extends ship {
     private static final int HEALTH = 100;
     private int health;
 
+
+    /**
+     *
+     * @param unitID
+     * @param owner
+     * @param xcoords
+     * @param ycoords
+     * @param speed
+     * @param status
+     */
     public smallFighter(int unitID, int owner, int xcoords, int ycoords, int speed, String status) {
         super(unitID, owner, xcoords, ycoords, speed, status);
         this.health = HEALTH;

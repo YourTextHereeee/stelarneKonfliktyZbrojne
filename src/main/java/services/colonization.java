@@ -50,6 +50,7 @@ public class colonization {
 
         colonization colonization1 = new colonization(targetPlanetID, unitID, colonizerID);
         map.colonizationQueue.add(colonization1);
+        colonization1.progress = 0;
     }
 
     public void finishColonization(Iterator<colonization> ITE2){
